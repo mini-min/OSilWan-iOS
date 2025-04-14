@@ -45,7 +45,7 @@ public struct OSWButton: View {
     }
 }
 
-// MARK: - Button Style
+// MARK: - Button Size
 
 public enum OSWButtonSize {
     case full

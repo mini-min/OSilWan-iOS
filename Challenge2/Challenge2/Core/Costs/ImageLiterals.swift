@@ -9,4 +9,5 @@ import Foundation
 
 enum ImageLiterals: String {
     case test = "test"
+    case osilwan = "osilwan"
 }

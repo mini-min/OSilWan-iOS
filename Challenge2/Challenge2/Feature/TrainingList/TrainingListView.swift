@@ -7,86 +7,61 @@
 
 import SwiftUI
 
-struct Training: Identifiable {
+struct TrainingItem: Identifiable {
     let id = UUID()
     let title: String
-    let description: String
-    let icon: String
+    let subtitle: String
 }
 
 struct TrainingListView: View {
-    @State private var trainings: [Training] = [
-        Training(title: "04.11의 실패 트레이닝", description: "오늘 아침에 일찍 일어나기를 실패해버리다...", icon: "drop.fill"),
-        Training(title: "04.11의 실패 트레이닝", description: "오늘 아침에 일찍 일어나기를 실패해버리다...", icon: "drop.fill"),
-        Training(title: "04.11의 실패 트레이닝", description: "오늘 아침에 일찍 일어나기를 실패해버리다...", icon: "drop.fill")
+    @State private var items = [
+        TrainingItem(title: "04.11의 실패 트레이닝", subtitle: "오늘 아침에 일찍 일어나기를 실패해버리다..."),
+        TrainingItem(title: "04.11의 실패 트레이닝", subtitle: "오늘 아침에 일찍 일어나기를 실패해버리다..."),
+        TrainingItem(title: "04.11의 실패 트레이닝", subtitle: "오늘 아침에 일찍 일어나기를 실패해버리다...")
     ]
     
-    @State private var filteredTrainings: [Training] = []
-    @State private var filterType: String = "전체보기"
     @Environment(\.editMode) private var editMode
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                Color.osWbackground
-                    .ignoresSafeArea()
-                
-                VStack {
-                    Menu {
-                        Button("전체보기") { filterType = "전체보기"; applyFilter() }
-                        Button("Learning Training") { filterType = "Learning"; applyFilter() }
-                        Button("Empathy Training") { filterType = "Empathy"; applyFilter() }
-                        Button("Goal Training") { filterType = "Goal"; applyFilter() }
-                    } label: {
-                        Text(filterType)
-                            .font(.headline)
-                            .padding()
-                    }
+        ZStack {
+            Color.osWbackground.ignoresSafeArea()
+            
+            List {
+                ForEach(items) { item in
+                    HStack {
+  
+                        Image(systemName: "drop.fill")
+                            .font(.largeTitle)
 
-                    List {
-                        ForEach(filteredTrainings.isEmpty ? trainings : filteredTrainings) { training in
-                            HStack {
-                                Image(systemName: training.icon)
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
-                                VStack(alignment: .leading) {
-                                    Text(training.title)
-                                        .font(.headline)
-                                    Text(training.description)
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                }
-                            }
+                        VStack(alignment: .leading) {
+                            Text(item.title)
+                                .fontWeight(.bold)
+                            Text(item.subtitle)
+                                .font(.caption)
+                                .foregroundColor(.gray)
                         }
-                        .onDelete { indexSet in
-                            trainings.remove(atOffsets: indexSet)
-                            applyFilter()
-                        }
-                        .onMove { fromOffsets, toOffset in
-                            trainings.move(fromOffsets: fromOffsets, toOffset: toOffset)
-                            applyFilter()
+
+                        if editMode?.wrappedValue == .active {
+                            Spacer()
                         }
                     }
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            EditButton()
-                        }
-                    }
+                    .padding(.vertical, 8)
+                    .listRowBackground(Color.clear)
                 }
-                .navigationTitle("Title")
+                .onDelete { indexSet in
+                    items.remove(atOffsets: indexSet)
+                }
+                .onMove { indices, newOffset in
+                    items.move(fromOffsets: indices, toOffset: newOffset)
+                }
+            }
+            .scrollContentBackground(.hidden)
+        }
+        .navigationTitle("Title")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                EditButton()
             }
         }
     }
-    
-    private func applyFilter() {
-        if filterType == "전체보기" {
-            filteredTrainings = []
-        } else {
-            filteredTrainings = trainings.filter { $0.title.contains(filterType) }
-        }
-    }
-}
-
-#Preview {
-    TrainingListView()
 }

@@ -32,7 +32,10 @@ struct MainView: View {
                         .fontWeight(.bold)
                         .padding(.top, 50)
                     
-                    
+                    Image(ImageLiterals.osilwan.rawValue)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 300)
                 }
             }
             .navigationTitle("Title")

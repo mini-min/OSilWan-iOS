@@ -12,48 +12,78 @@ public struct OSWTextEditor: View {
     // MARK: - Properties
     
     @Binding var text: String
-    @FocusState private var isFocused: Bool
-    
-    private let placeholder: String
-    
+    let placeholder: String
+    let state: OSWTextFieldStatus
+        
     // MARK: - Init
     
     init(
         text: Binding<String>,
-        placeholder: String
+        placeholder: String,
+        state: OSWTextFieldStatus
     ) {
         self._text = text
         self.placeholder = placeholder
+        self.state = state
     }
     
     // MARK: - Body
     
     public var body: some View {
-        ZStack(alignment: .topLeading) {
+        TextEditor(text: $text)
+        .padding(15)
+        .background(alignment: .topLeading) {
             if text.isEmpty {
                 Text(placeholder)
-                    .foregroundColor(.oswGray1)
+                    .lineSpacing(10)
+                    .padding(20)
                     .font(.system(size: 16))
-                    .padding(.all, 20)
+                    .foregroundColor(.oswGray1)
             }
-            
-            TextEditor(text: $text)
-                .focused($isFocused)
-                .padding(16)
-                .font(.system(size: 14))
-                .foregroundColor(.osWblack)
-                .background(.oswGray3)
         }
-        .frame(minHeight: 130)
         .background(.oswGray3)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .scrollContentBackground(.hidden)
+        .font(.system(size: 16))
         .overlay(
             RoundedRectangle(cornerRadius: 12)
-                .stroke(.main, lineWidth: 2)
+                .stroke(state.borderColor, lineWidth: 2)
         )
-        .clipShape(RoundedRectangle(cornerRadius: 15))
+        .overlay(alignment: .bottomTrailing) {
+            Text("\(text.count) / 200")
+                .font(.system(size: 12))
+                .foregroundColor(.oswGray1)
+                .padding(.trailing, 15)
+                .padding(.bottom, 15)
+                .onChange(of: text) {}
+        }
     }
 }
 
+// MARK: - Button Status
+
+public enum OSWTextFieldStatus {
+    case normal
+    case focus
+    case error
+    
+    var borderColor: Color {
+        switch self {
+        case .normal: return .clear
+        case .focus: return .main
+        case .error: return .warning
+        }
+    }
+}
+
+// MARK: - Preview
+
 #Preview {
-    OSWTextEditor(text: .constant(""), placeholder: "어쩌구")
+    OSWTextEditor(
+        text: .constant(""),
+        placeholder: """
+        그럼에도 불구하고,\n그 실패를 통해 배운 점이 있지 않을까요?\n해당 실패를 통해 배운 점을 작성해주세요!
+        """,
+        state: .focus
+    )
 }

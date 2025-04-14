@@ -12,36 +12,47 @@ struct BeforeTrainingView: View {
     let trainingType: TrainingType
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                HStack {
-                    VStack {
-                        Text(trainingType.tite)
-                        Text(trainingType.description)
-                    }
-                    
-                    trainingType.image
-                }
-                
-                ForEach(TrainingType.allCases, id: \.self) { type in
-                    TrainingListCard(trainingType: type.trainingList[0])
-                }
-                
-                OSWButton(
-                    style: .active,
-                    size: .full,
-                    title: "트레이닝 시작하기",
-                    action: {
-                        isTrainingStarted = true
-                    }
-                )
+        VStack {
+            VStack(alignment: .leading, spacing: 10) {
+                Text(trainingType.tite)
+                    .font(.title)
+                    .fontWeight(.heavy)
+                Text(trainingType.description)
+                    .font(.callout)
+                    .foregroundStyle(.oswGray1)
             }
-            .navigationDestination(
-                isPresented: $isTrainingStarted,
-                destination: { TrainingView(trainingType: trainingType)
+            .padding(.top, 64)
+            
+            
+            VStack(alignment: .leading, spacing: 12) {
+                Text("트레이닝 리스트")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                
+                ForEach(trainingType.trainingList, id: \.self) { training in
+                    BeforeTrainingListCard(trainingType: training)
+                }
+            }
+            .padding(.horizontal, 18)
+            .padding(.top, 64)
+            
+            
+            Spacer()
+            
+            OSWButton(
+                style: .active,
+                size: .full,
+                title: "트레이닝 시작하기",
+                action: {
+                    isTrainingStarted = true
                 }
             )
         }
+        .navigationDestination(
+            isPresented: $isTrainingStarted,
+            destination: { TrainingView(trainingType: trainingType)
+            }
+        )
     }
 }
 

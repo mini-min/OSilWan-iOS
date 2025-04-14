@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TrainingListCard: View {
+struct BeforeTrainingListCard: View {
     let trainingType: DetailTrainingType
 
     var body: some View {
@@ -25,13 +25,12 @@ struct TrainingListCard: View {
 
             }
         }
-        .frame(width: 343, height: 100)
-        .background(.white)
+        .frame(height: 100)
+        .background(.oswGray3)
         .cornerRadius(20)
-        .shadow(radius: 20)
     }
 }
 
 #Preview {
-    TrainingListCard(trainingType: .shoutFail)
+    BeforeTrainingListCard(trainingType: .shoutFail)
 }
