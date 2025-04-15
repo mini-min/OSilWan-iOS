@@ -10,7 +10,7 @@ import SwiftUI
 struct TrainingView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
-
+    
     @State private var currentStep: Int = 1
     @State private var failureText = ""
     @State private var nextText = ""
@@ -31,14 +31,25 @@ struct TrainingView: View {
                         .font(.title3)
                         .fontWeight(.bold)
                         .padding(.horizontal, 10)
-                    OSWTextEditor(
-                        text: $failureText,
-                        placeholder: trainingType.trainingList[0].placeholder,
-                        state: currentStep == 1 ? .focus : .normal
-                    )
-                    .focused($isFailureFocused)
+                    
+                    ZStack {
+                        OSWTextEditor(
+                            text: $failureText,
+                            placeholder: trainingType.trainingList[0].placeholder,
+                            state: currentStep == 1 ? .focus : .normal
+                        )
+                        .focused($isFailureFocused)
+                        
+                        if currentStep == 3 {
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .contentShape(Rectangle())
+                                .onTapGesture {}
+                        }
+                    }
                     .frame(height: 130)
                     .padding(.bottom, 28)
+                    
                 }
                 
                 if currentStep >= 2 {
@@ -46,12 +57,22 @@ struct TrainingView: View {
                         .font(.title3)
                         .fontWeight(.bold)
                         .padding(.horizontal, 10)
-                    OSWTextEditor(
-                        text: $nextText,
-                        placeholder: trainingType.trainingList[1].placeholder,
-                        state: currentStep == 2 ? .focus : .normal
-                    )
-                    .focused($isNextFocused)
+                    
+                    ZStack {
+                        OSWTextEditor(
+                            text: $nextText,
+                            placeholder: trainingType.trainingList[1].placeholder,
+                            state: currentStep == 2 ? .focus : .normal
+                        )
+                        .focused($isNextFocused)
+                        
+                        if currentStep == 3 {
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .contentShape(Rectangle())
+                                .onTapGesture {}
+                        }
+                    }
                     .frame(height: 130)
                 }
             }
@@ -71,27 +92,41 @@ struct TrainingView: View {
                         }
                     }
                 )
+                .disabled(currentStep == 1)
                 
                 OSWButton(
                     style: .active,
                     size: .half,
                     title: currentStep == 3 ? "완료" : "다음",
                     action: {
-                        if currentStep == 3 {
-                            dismiss()
-                            saveTrainingRecord()
-                        } else {
+                        switch currentStep {
+                        case 1, 2:
                             currentStep += 1
                             updateFocus()
+                        default:
+                            dismiss()
+                            saveTrainingRecord()
                         }
                     }
                 )
+                .disabled(isNextButtonDisabled)
             }
             .padding(.bottom, 10)
         }
         .navigationTitle(trainingType.tite)
         .onAppear {
             updateFocus()
+        }
+    }
+    
+    private var isNextButtonDisabled: Bool {
+        switch currentStep {
+        case 1:
+            return failureText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        case 2:
+            return nextText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        default:
+            return false
         }
     }
 }
@@ -119,7 +154,7 @@ private extension TrainingView {
             isNextFocused = false
         }
     }
-
+    
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
