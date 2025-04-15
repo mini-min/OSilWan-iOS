@@ -9,10 +9,14 @@ import SwiftUI
 
 struct TrainingView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var modelContext
 
     @State private var currentStep: Int = 1
     @State private var failureText = ""
     @State private var nextText = ""
+    
+    @FocusState private var isFailureFocused: Bool
+    @FocusState private var isNextFocused: Bool
     
     let trainingType: TrainingType
     
@@ -22,38 +26,32 @@ struct TrainingView: View {
                 .padding(.bottom, 35)
             
             VStack(alignment: .leading) {
-                Text("실패 기록하기")
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .padding(.horizontal, 10)
-                OSWTextEditor(
-                    text: $failureText,
-                    placeholder:
-"""
-어떤 실패가 있었나요?
-언제, 어디서, 어떤 실패를 어떻게 겪었는지
-최대한 구체적으로 작성해주세요!
-""",
-                    state: failureText.isEmpty ? .normal : .focus
-                )
-                .frame(height: 130)
-                .padding(.bottom, 28)
+                if currentStep == 1 || currentStep == 3 {
+                    Text(trainingType.trainingList[0].title)
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .padding(.horizontal, 10)
+                    OSWTextEditor(
+                        text: $failureText,
+                        placeholder: trainingType.trainingList[0].placeholder,
+                        state: currentStep == 1 ? .focus : .normal
+                    )
+                    .focused($isFailureFocused)
+                    .frame(height: 130)
+                    .padding(.bottom, 28)
+                }
                 
                 if currentStep >= 2 {
-                    Text("배운점 작성하기")
+                    Text(trainingType.trainingList[1].title)
                         .font(.title3)
                         .fontWeight(.bold)
                         .padding(.horizontal, 10)
                     OSWTextEditor(
                         text: $nextText,
-                        placeholder:
-    """
-    그럼에도 불구하고,
-    그 실패를 통해 배운 점이 있지 않을까요?
-    해당 실패를 통해 배운 점을 작성해주세요!
-    """,
-                        state: failureText.isEmpty ? .normal : .focus
+                        placeholder: trainingType.trainingList[1].placeholder,
+                        state: currentStep == 2 ? .focus : .normal
                     )
+                    .focused($isNextFocused)
                     .frame(height: 130)
                 }
             }
@@ -67,7 +65,10 @@ struct TrainingView: View {
                     size: .half,
                     title: "이전",
                     action: {
-                        if currentStep > 1 { currentStep -= 1 }
+                        if currentStep > 1 {
+                            currentStep -= 1
+                            updateFocus()
+                        }
                     }
                 )
                 
@@ -78,17 +79,48 @@ struct TrainingView: View {
                     action: {
                         if currentStep == 3 {
                             dismiss()
+                            saveTrainingRecord()
                         } else {
                             currentStep += 1
+                            updateFocus()
                         }
                     }
                 )
             }
             .padding(.bottom, 10)
         }
+        .navigationTitle(trainingType.tite)
+        .onAppear {
+            updateFocus()
+        }
     }
 }
 
-#Preview {
-    TrainingView(trainingType: .learning)
+private extension TrainingView {
+    func saveTrainingRecord() {
+        let record = TrainingRecord(
+            trainingType: trainingType.rawValue,
+            failureText: failureText,
+            nextText: nextText
+        )
+        modelContext.insert(record)
+    }
+}
+
+private extension TrainingView {
+    func updateFocus() {
+        switch currentStep {
+        case 1:
+            isFailureFocused = true
+        case 2:
+            isNextFocused = true
+        default:
+            isFailureFocused = false
+            isNextFocused = false
+        }
+    }
+
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
 }

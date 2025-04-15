@@ -6,37 +6,29 @@
 //
 
 import SwiftUI
-
-struct TrainingItem: Identifiable {
-    let id = UUID()
-    let title: String
-    let subtitle: String
-}
+import SwiftData
 
 struct TrainingListView: View {
-    @State private var items = [
-        TrainingItem(title: "04.11의 실패 트레이닝", subtitle: "오늘 아침에 일찍 일어나기를 실패해버리다..."),
-        TrainingItem(title: "04.11의 실패 트레이닝", subtitle: "오늘 아침에 일찍 일어나기를 실패해버리다..."),
-        TrainingItem(title: "04.11의 실패 트레이닝", subtitle: "오늘 아침에 일찍 일어나기를 실패해버리다...")
-    ]
-    
     @Environment(\.editMode) private var editMode
+    @Environment(\.modelContext) private var modelContext
     
+    @Query(sort: \TrainingRecord.savedDate, order: .reverse) private var records: [TrainingRecord]
+
     var body: some View {
         ZStack {
             Color.osWbackground.ignoresSafeArea()
-            
+
             List {
-                ForEach(items) { item in
+                ForEach(records) { record in
                     HStack {
-  
                         Image(systemName: "drop.fill")
                             .font(.largeTitle)
 
                         VStack(alignment: .leading) {
-                            Text(item.title)
+                            Text(record.trainingType)  // 저장한 타입
                                 .fontWeight(.bold)
-                            Text(item.subtitle)
+
+                            Text(record.failureText)  // 저장한 실패 텍스트
                                 .font(.caption)
                                 .foregroundColor(.gray)
                         }
@@ -49,10 +41,12 @@ struct TrainingListView: View {
                     .listRowBackground(Color.clear)
                 }
                 .onDelete { indexSet in
-                    items.remove(atOffsets: indexSet)
+                    for index in indexSet {
+                        modelContext.delete(records[index])
+                    }
                 }
                 .onMove { indices, newOffset in
-                    items.move(fromOffsets: indices, toOffset: newOffset)
+                    // items.move(fromOffsets: indices, toOffset: newOffset)
                 }
             }
             .scrollContentBackground(.hidden)
