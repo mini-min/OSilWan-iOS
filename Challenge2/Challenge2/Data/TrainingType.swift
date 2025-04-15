@@ -50,7 +50,7 @@ enum TrainingType: String, CaseIterable {
         case .learning:
             return [.writeFail, .writeLearn, .shoutFail]
         case .empathy:
-            return [.writeFail, .writeFail, .shoutFail]
+            return [.writeFail, .writeEmpathy, .shoutFail]
         case .goal:
             return [.writeFail, .writeGoal, .shoutFail]
         }

@@ -6,89 +6,142 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct TrainingView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var modelContext
 
-    @State private var currentStep: Int = 1
-    @State private var failureText = ""
-    @State private var nextText = ""
+    @StateObject private var store: TrainingStore
     
+    @FocusState private var isFailureFocused: Bool
+    @FocusState private var isNextFocused: Bool
+
     let trainingType: TrainingType
-    
+
+    init(trainingType: TrainingType) {
+        _store = StateObject(wrappedValue: TrainingStore(trainingType: trainingType))
+        self.trainingType = trainingType
+    }
+
     var body: some View {
         VStack {
-            OSWProgressBar(totalSteps: 3, currentStep: $currentStep)
-                .padding(.bottom, 35)
-            
-            VStack(alignment: .leading) {
-                Text("실패 기록하기")
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .padding(.horizontal, 10)
-                OSWTextEditor(
-                    text: $failureText,
-                    placeholder:
-"""
-어떤 실패가 있었나요?
-언제, 어디서, 어떤 실패를 어떻게 겪었는지
-최대한 구체적으로 작성해주세요!
-""",
-                    state: failureText.isEmpty ? .normal : .focus
+            OSWProgressBar(
+                totalSteps: trainingType.trainingList.count,
+                currentStep: Binding(
+                    get: { store.state.currentStep },
+                    set: { _ in }
                 )
-                .frame(height: 130)
-                .padding(.bottom, 28)
-                
-                if currentStep >= 2 {
-                    Text("배운점 작성하기")
+            )
+            .padding(.bottom, 35)
+
+            VStack(alignment: .leading) {
+                if store.state.currentStep == 1 || store.state.currentStep == 3 {
+                    Text(trainingType.trainingList[0].title)
                         .font(.title3)
                         .fontWeight(.bold)
                         .padding(.horizontal, 10)
-                    OSWTextEditor(
-                        text: $nextText,
-                        placeholder:
-    """
-    그럼에도 불구하고,
-    그 실패를 통해 배운 점이 있지 않을까요?
-    해당 실패를 통해 배운 점을 작성해주세요!
-    """,
-                        state: failureText.isEmpty ? .normal : .focus
-                    )
+
+                    ZStack {
+                        OSWTextEditor(
+                            text: Binding(
+                                get: { store.state.failureText },
+                                set: { store.send(.updateFailureText($0)) }
+                            ),
+                            placeholder: trainingType.trainingList[0].placeholder,
+                            state: store.state.currentStep == 1 ? .focus : .normal
+                        )
+                        .focused($isFailureFocused)
+
+                        if store.state.currentStep == 3 {
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .contentShape(Rectangle())
+                                .onTapGesture {}
+                        }
+                    }
+                    .frame(height: 130)
+                    .padding(.bottom, 28)
+                }
+
+                if store.state.currentStep >= 2 {
+                    Text(trainingType.trainingList[1].title)
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .padding(.horizontal, 10)
+
+                    ZStack {
+                        OSWTextEditor(
+                            text: Binding(
+                                get: { store.state.nextText },
+                                set: { store.send(.updateNextText($0)) }
+                            ),
+                            placeholder: trainingType.trainingList[1].placeholder,
+                            state: store.state.currentStep == 2 ? .focus : .normal
+                        )
+                        .focused($isNextFocused)
+
+                        if store.state.currentStep == 3 {
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .contentShape(Rectangle())
+                                .onTapGesture {}
+                        }
+                    }
                     .frame(height: 130)
                 }
             }
             .padding(.horizontal, 16)
-            
+
             Spacer()
-            
+
             HStack(spacing: 12) {
                 OSWButton(
                     style: .secondary,
                     size: .half,
                     title: "이전",
-                    action: {
-                        if currentStep > 1 { currentStep -= 1 }
-                    }
+                    action: { store.send(.decrementStep) }
                 )
-                
+                .disabled(store.state.currentStep == 1)
+
                 OSWButton(
                     style: .active,
                     size: .half,
-                    title: currentStep == 3 ? "완료" : "다음",
+                    title: store.state.currentStep == 3 ? "완료" : "다음",
                     action: {
-                        if currentStep == 3 {
+                        if store.state.currentStep == 3 {
+                            let record = TrainingRecord(
+                                trainingType: trainingType.rawValue,
+                                failureText: store.state.failureText,
+                                nextText: store.state.nextText
+                            )
+                            modelContext.insert(record)
                             dismiss()
                         } else {
-                            currentStep += 1
+                            store.send(.incrementStep)
                         }
                     }
                 )
+                .disabled(store.state.isNextButtonDisabled)
             }
             .padding(.bottom, 10)
         }
+        .navigationTitle(trainingType.tite)
+        .onAppear { updateFocus() }
+        .onChange(of: store.state.currentStep) { updateFocus() }
     }
 }
 
-#Preview {
-    TrainingView(trainingType: .learning)
+private extension TrainingView {
+    func updateFocus() {
+        switch store.state.currentStep {
+        case 1:
+            isFailureFocused = true
+        case 2:
+            isNextFocused = true
+        default:
+            isFailureFocused = false
+            isNextFocused = false
+        }
+    }
 }

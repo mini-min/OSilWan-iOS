@@ -10,6 +10,8 @@ import SwiftUI
 public struct OSWButton: View {
     
     // MARK: - Properties
+    
+    @Environment(\.isEnabled) private var isEnabled
 
     let style: OSWButtonStyle
     let size: OSWButtonSize
@@ -36,12 +38,11 @@ public struct OSWButton: View {
         Button(action: action) {
             Text(title)
                 .font(.system(size: 16, weight: .bold))
-                .foregroundStyle(style.textColor)
+                .foregroundStyle(isEnabled ? style.textColor : .osWwhite)
                 .frame(width: size.width, height: size.height)
-                .background(style.backgroundColor)
+                .background(isEnabled ? style.backgroundColor : .oswGray2)
                 .clipShape(RoundedRectangle(cornerRadius: 15))
         }
-        .disabled(style == .deactive)
     }
 }
 
@@ -70,13 +71,11 @@ public enum OSWButtonSize {
 
 public enum OSWButtonStyle {
     case active
-    case deactive
     case secondary
     
     var backgroundColor: Color {
         switch self {
         case .active: .main
-        case .deactive: .oswGray2
         case .secondary: .oswGray3
         }
     }
@@ -84,7 +83,6 @@ public enum OSWButtonStyle {
     var textColor: Color {
         switch self {
         case .active: .osWblack
-        case .deactive: .osWwhite
         case .secondary: .oswGray1
         }
     }
@@ -94,4 +92,5 @@ public enum OSWButtonStyle {
 
 #Preview {
     OSWButton(style: .active, size: .full, title: "완료", action: {})
+        .disabled(true)
 }
