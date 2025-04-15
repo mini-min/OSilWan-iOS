@@ -15,7 +15,6 @@
 		3D6D552D2DAC93180055A6E1 /* DetailTrainingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D552C2DAC93180055A6E1 /* DetailTrainingType.swift */; };
 		3D6D552F2DAC96A80055A6E1 /* OSWProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D552E2DAC96A80055A6E1 /* OSWProgressBar.swift */; };
 		3D6D554B2DACEF6A0055A6E1 /* TrainingListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D554A2DACEF6A0055A6E1 /* TrainingListCard.swift */; };
-		3D6D554D2DACF19C0055A6E1 /* OSWTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D554C2DACF19C0055A6E1 /* OSWTipView.swift */; };
 		3D6D554F2DAD34E70055A6E1 /* Text+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D554E2DAD34E70055A6E1 /* Text+.swift */; };
 		3D6D55512DADF19D0055A6E1 /* TrainingRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D55502DADF19D0055A6E1 /* TrainingRecord.swift */; };
 		3DAB25EB2DAA8E6A00FDA362 /* Challenge2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB25E72DAA8E6A00FDA362 /* Challenge2App.swift */; };
@@ -30,6 +29,9 @@
 		3DAB260D2DAB6F6300FDA362 /* OSWButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB260C2DAB6F6300FDA362 /* OSWButton.swift */; };
 		3DAB260F2DAB706F00FDA362 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DAB260E2DAB706F00FDA362 /* Colors.xcassets */; };
 		3DAB26112DAB755F00FDA362 /* OSWTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB26102DAB755F00FDA362 /* OSWTextEditor.swift */; };
+		3DFB940E2DAE28370072ECF8 /* TrainingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFB940D2DAE28370072ECF8 /* TrainingAction.swift */; };
+		3DFB94102DAE298A0072ECF8 /* TrainingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFB940F2DAE298A0072ECF8 /* TrainingState.swift */; };
+		3DFB94122DAE2A2B0072ECF8 /* TrainingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFB94112DAE2A2B0072ECF8 /* TrainingStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +43,6 @@
 		3D6D552C2DAC93180055A6E1 /* DetailTrainingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTrainingType.swift; sourceTree = "<group>"; };
 		3D6D552E2DAC96A80055A6E1 /* OSWProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSWProgressBar.swift; sourceTree = "<group>"; };
 		3D6D554A2DACEF6A0055A6E1 /* TrainingListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingListCard.swift; sourceTree = "<group>"; };
-		3D6D554C2DACF19C0055A6E1 /* OSWTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSWTipView.swift; sourceTree = "<group>"; };
 		3D6D554E2DAD34E70055A6E1 /* Text+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+.swift"; sourceTree = "<group>"; };
 		3D6D55502DADF19D0055A6E1 /* TrainingRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingRecord.swift; sourceTree = "<group>"; };
 		3DAB25D12DAA8E4A00FDA362 /* Challenge2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challenge2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +58,9 @@
 		3DAB260C2DAB6F6300FDA362 /* OSWButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSWButton.swift; sourceTree = "<group>"; };
 		3DAB260E2DAB706F00FDA362 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		3DAB26102DAB755F00FDA362 /* OSWTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSWTextEditor.swift; sourceTree = "<group>"; };
+		3DFB940D2DAE28370072ECF8 /* TrainingAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingAction.swift; sourceTree = "<group>"; };
+		3DFB940F2DAE298A0072ECF8 /* TrainingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingState.swift; sourceTree = "<group>"; };
+		3DFB94112DAE2A2B0072ECF8 /* TrainingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +217,9 @@
 			isa = PBXGroup;
 			children = (
 				3DAB26022DAB6A9A00FDA362 /* TrainingView.swift */,
+				3DFB940D2DAE28370072ECF8 /* TrainingAction.swift */,
+				3DFB940F2DAE298A0072ECF8 /* TrainingState.swift */,
+				3DFB94112DAE2A2B0072ECF8 /* TrainingStore.swift */,
 			);
 			path = Training;
 			sourceTree = "<group>";
@@ -223,7 +230,6 @@
 				3DAB260C2DAB6F6300FDA362 /* OSWButton.swift */,
 				3DAB26102DAB755F00FDA362 /* OSWTextEditor.swift */,
 				3D6D552E2DAC96A80055A6E1 /* OSWProgressBar.swift */,
-				3D6D554C2DACF19C0055A6E1 /* OSWTipView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -304,10 +310,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D6D554D2DACF19C0055A6E1 /* OSWTipView.swift in Sources */,
+				3DFB940E2DAE28370072ECF8 /* TrainingAction.swift in Sources */,
 				3D6D554F2DAD34E70055A6E1 /* Text+.swift in Sources */,
 				3DAB26052DAB6AA300FDA362 /* TrainingListView.swift in Sources */,
 				3DAB25EB2DAA8E6A00FDA362 /* Challenge2App.swift in Sources */,
+				3DFB94122DAE2A2B0072ECF8 /* TrainingStore.swift in Sources */,
 				3D6D551A2DAC8F0D0055A6E1 /* ImageLiterals.swift in Sources */,
 				3DAB25FF2DAB6A8600FDA362 /* MainView.swift in Sources */,
 				3D6D55512DADF19D0055A6E1 /* TrainingRecord.swift in Sources */,
@@ -320,6 +327,7 @@
 				3DAB26112DAB755F00FDA362 /* OSWTextEditor.swift in Sources */,
 				3D6D554B2DACEF6A0055A6E1 /* TrainingListCard.swift in Sources */,
 				3D6D54FC2DAC8B7B0055A6E1 /* TrainingType.swift in Sources */,
+				3DFB94102DAE298A0072ECF8 /* TrainingState.swift in Sources */,
 				3DAB26032DAB6A9A00FDA362 /* TrainingView.swift in Sources */,
 				3D6D552F2DAC96A80055A6E1 /* OSWProgressBar.swift in Sources */,
 				3DAB260D2DAB6F6300FDA362 /* OSWButton.swift in Sources */,
