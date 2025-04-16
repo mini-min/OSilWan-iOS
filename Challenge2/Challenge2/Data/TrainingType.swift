@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-enum TrainingType: String, CaseIterable {
+enum TrainingType: String, CaseIterable {    
     case learning
     case empathy
     case goal
     
-    var tite: String {
+    var title: String {
         switch self {
         case .learning:
             return "Learning Training"

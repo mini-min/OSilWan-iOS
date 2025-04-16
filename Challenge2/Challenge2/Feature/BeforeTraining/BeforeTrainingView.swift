@@ -14,7 +14,7 @@ struct BeforeTrainingView: View {
     var body: some View {
         VStack {
             VStack(alignment: .leading, spacing: 10) {
-                Text(trainingType.tite)
+                Text(trainingType.title)
                     .font(.title)
                     .fontWeight(.heavy)
                 Text(trainingType.description)
