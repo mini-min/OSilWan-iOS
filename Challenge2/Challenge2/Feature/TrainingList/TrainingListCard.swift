@@ -8,12 +8,26 @@
 import SwiftUI
 
 struct TrainingListCard: View {
-    @Binding var isEditMode: Bool
+    @Binding private var isEditMode: Bool
     
-    let imageName: String
-    let date: Date
-    let contents: String
-    let onDelete: () -> Void
+    private let imageName: String
+    private let date: Date
+    private let contents: String
+    private let onDelete: () -> Void
+    
+    init(
+        isEditMode: Binding<Bool>,
+        imageName: String,
+        date: Date,
+        contents: String,
+        onDelete: @escaping () -> Void
+    ) {
+        self._isEditMode = isEditMode
+        self.imageName = imageName
+        self.date = date
+        self.contents = contents
+        self.onDelete = onDelete
+    }
     
     var body: some View {
         HStack {
