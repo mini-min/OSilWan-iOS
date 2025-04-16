@@ -34,14 +34,14 @@ enum TrainingType: String, CaseIterable {
         }
     }
     
-    var image: Image {
+    var imageName: String {
         switch self {
         case .learning:
-            return Image(ImageLiterals.test.rawValue)
+            return ImageLiterals.test.rawValue
         case .empathy:
-            return Image(ImageLiterals.test.rawValue)
+            return ImageLiterals.test.rawValue
         case .goal:
-            return Image(ImageLiterals.test.rawValue)
+            return ImageLiterals.test.rawValue
         }
     }
     

@@ -8,35 +8,51 @@
 import SwiftUI
 
 struct TrainingListCard: View {
+    @Binding var isEditMode: Bool
     let imageName: String
-    let date: String
+    let date: Date
     let contents: String
     
     var body: some View {
         HStack {
             Image(imageName)
                 .resizable()
-                .frame(width: 85, height: 85)
+                .scaledToFit()
+                .frame(width: 80, height: 80)
             
-            VStack(alignment: .leading, spacing: 5) {
-                Text("\(date)의 실패 트레이닝")
+            Spacer(minLength: 5)
+            
+            VStack(alignment: .leading, spacing: 10) {
+                Text("\(date.toMonthDayString)의 실패 트레이닝")
                     .font(.system(size: 16, weight: .heavy))
                     .foregroundStyle(.osWblack)
                 Text(contents)
                     .font(.system(size: 12, weight: .medium))
                     .foregroundStyle(.oswGray1)
+                    .lineSpacing(4)
             }
+            .frame(minWidth: 234, alignment: .leading)
         }
-        .background(.white)
+        .padding(.horizontal, 8)
+        .padding(.vertical, 12)
+        .frame(width: 343, height: 100)
+        .background(.osWwhite)
         .cornerRadius(12)
-        .shadow(radius: 20)
     }
 }
 
 #Preview {
     TrainingListCard(
+        isEditMode: .constant(true),
         imageName: ImageLiterals.test.rawValue,
-        date: "04.11의 실패 트레이닝",
+        date: Date(),
         contents: "오늘 아침에 일찍 일어나기를 실패해버리다..\n그럼에도 불구하고. 어쩌구 저쩌구....."
+    )
+    
+    TrainingListCard(
+        isEditMode: .constant(true),
+        imageName: ImageLiterals.test.rawValue,
+        date: Date(),
+        contents: "오늘 아침에 일찍 일어나기를 "
     )
 }

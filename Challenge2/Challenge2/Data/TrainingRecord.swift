@@ -29,3 +29,9 @@ final class TrainingRecord {
         self.savedDate = savedDate
     }
 }
+
+extension TrainingRecord {
+    var trainingTypeEnum: TrainingType {
+        return TrainingType(rawValue: trainingType) ?? .learning
+    }
+}
