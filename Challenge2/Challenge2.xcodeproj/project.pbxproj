@@ -17,6 +17,7 @@
 		3D6D554B2DACEF6A0055A6E1 /* TrainingListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D554A2DACEF6A0055A6E1 /* TrainingListCard.swift */; };
 		3D6D554F2DAD34E70055A6E1 /* Text+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D554E2DAD34E70055A6E1 /* Text+.swift */; };
 		3D6D55512DADF19D0055A6E1 /* TrainingRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D55502DADF19D0055A6E1 /* TrainingRecord.swift */; };
+		3DA566802DAF38B800558130 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA5667F2DAF38B800558130 /* Date+.swift */; };
 		3DAB25EB2DAA8E6A00FDA362 /* Challenge2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB25E72DAA8E6A00FDA362 /* Challenge2App.swift */; };
 		3DAB25EC2DAA8E6A00FDA362 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB25E82DAA8E6A00FDA362 /* ContentView.swift */; };
 		3DAB25ED2DAA8E6A00FDA362 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB25E92DAA8E6A00FDA362 /* Item.swift */; };
@@ -45,6 +46,7 @@
 		3D6D554A2DACEF6A0055A6E1 /* TrainingListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingListCard.swift; sourceTree = "<group>"; };
 		3D6D554E2DAD34E70055A6E1 /* Text+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+.swift"; sourceTree = "<group>"; };
 		3D6D55502DADF19D0055A6E1 /* TrainingRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingRecord.swift; sourceTree = "<group>"; };
+		3DA5667F2DAF38B800558130 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		3DAB25D12DAA8E4A00FDA362 /* Challenge2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Challenge2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DAB25E42DAA8E6A00FDA362 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3DAB25E62DAA8E6A00FDA362 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				3D6D554E2DAD34E70055A6E1 /* Text+.swift */,
+				3DA5667F2DAF38B800558130 /* Date+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DA566802DAF38B800558130 /* Date+.swift in Sources */,
 				3DFB940E2DAE28370072ECF8 /* TrainingAction.swift in Sources */,
 				3D6D554F2DAD34E70055A6E1 /* Text+.swift in Sources */,
 				3DAB26052DAB6AA300FDA362 /* TrainingListView.swift in Sources */,

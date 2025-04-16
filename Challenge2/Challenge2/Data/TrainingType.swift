@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-enum TrainingType: String, CaseIterable {
+enum TrainingType: String, CaseIterable {    
     case learning
     case empathy
     case goal
     
-    var tite: String {
+    var title: String {
         switch self {
         case .learning:
             return "Learning Training"
@@ -34,14 +34,14 @@ enum TrainingType: String, CaseIterable {
         }
     }
     
-    var image: Image {
+    var imageName: String {
         switch self {
         case .learning:
-            return Image(ImageLiterals.test.rawValue)
+            return ImageLiterals.osilwan.rawValue
         case .empathy:
-            return Image(ImageLiterals.test.rawValue)
+            return ImageLiterals.osilwan.rawValue
         case .goal:
-            return Image(ImageLiterals.test.rawValue)
+            return ImageLiterals.osilwan.rawValue
         }
     }
     

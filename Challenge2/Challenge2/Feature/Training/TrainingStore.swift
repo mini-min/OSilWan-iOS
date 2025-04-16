@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 
 final class TrainingStore: ObservableObject {
     @Published private(set) var state = TrainingState()

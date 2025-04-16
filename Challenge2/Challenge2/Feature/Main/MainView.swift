@@ -22,7 +22,7 @@ struct MainView: View {
                             NavigationLink {
                                 BeforeTrainingView(trainingType: type)
                             } label: {
-                                TrainingCard(title: type.tite)
+                                TrainingCard(title: type.title)
                             }
                         }
                     }

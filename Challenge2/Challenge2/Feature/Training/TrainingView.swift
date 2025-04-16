@@ -126,7 +126,7 @@ struct TrainingView: View {
             }
             .padding(.bottom, 10)
         }
-        .navigationTitle(trainingType.tite)
+        .navigationTitle(trainingType.title)
         .onAppear { updateFocus() }
         .onChange(of: store.state.currentStep) { updateFocus() }
     }
