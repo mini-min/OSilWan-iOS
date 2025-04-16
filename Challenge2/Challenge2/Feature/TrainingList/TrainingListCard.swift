@@ -29,25 +29,26 @@ struct TrainingListCard: View {
                     Image(imageName)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 60, height: 60)
-                    
-                    Spacer(minLength: 5)
-
+                        .frame(width: 65, height: 65)
+                        .padding(.leading, 12)
                 }
                 
                 VStack(alignment: .leading, spacing: 10) {
                     Text("\(date.toMonthDayString)의 실패 트레이닝")
                         .font(.system(size: 16, weight: .heavy))
                         .foregroundStyle(.osWblack)
+                    
                     Text(contents)
                         .font(.system(size: 12, weight: .medium))
                         .foregroundStyle(.oswGray1)
                         .lineSpacing(4)
+                        .frame(width: 234, alignment: .leading)
                 }
-                .frame(minWidth: 234, minHeight: 100, alignment: .leading)
-                .padding(.leading, isEditMode ? 20 : 0)
+                .padding(.leading, 16)
+                .frame(minHeight: 100, alignment: .leading)
+                
+                Spacer()
             }
-            .padding(.horizontal, 8)
             .background(.osWwhite)
             .cornerRadius(12)
         }

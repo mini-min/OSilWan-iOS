@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 
 struct TrainingListView: View {
-    @Environment(\.editMode) private var editMode
     @Environment(\.modelContext) private var modelContext
     
     @State private var isEditMode: Bool = false
