@@ -49,7 +49,7 @@ struct TrainingListView: View {
                                 isDeleteAlertPresented = true
                             }
                         )
-                        .frame(width: isEditMode ? 333 : 343, height: 100)
+                        .frame(width: 343, height: 100)
                     }
                 }
             }

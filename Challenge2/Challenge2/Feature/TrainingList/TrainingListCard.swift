@@ -45,37 +45,40 @@ struct TrainingListCard: View {
                         .lineSpacing(4)
                 }
                 .frame(minWidth: 234, minHeight: 100, alignment: .leading)
+                .padding(.leading, isEditMode ? 20 : 0)
             }
             .padding(.horizontal, 8)
-            //.padding(.vertical, 12)
             .background(.osWwhite)
             .cornerRadius(12)
         }
     }
 }
 
-//#Preview {
-//    TrainingListCard(
-//        isEditMode: .constant(false),
-//        imageName: ImageLiterals.osilwan.rawValue,
-//        date: Date(),
-//        contents: "오늘 아침에 일찍 일어나기를 실패해버리다..\n그럼에도 불구하고. 어쩌구 저쩌구....."
-//    )
-//    .frame(width: 343, height: 100)
-//    
-//    TrainingListCard(
-//        isEditMode: .constant(true),
-//        imageName: ImageLiterals.osilwan.rawValue,
-//        date: Date(),
-//        contents: "오늘 아침에 일찍 일어나기를 실패해버리다..\n그럼에도 불구하고. 어쩌구 저쩌구....."
-//    )
-//    .frame(width: 343, height: 100)
-//    
-//    TrainingListCard(
-//        isEditMode: .constant(true),
-//        imageName: ImageLiterals.osilwan.rawValue,
-//        date: Date(),
-//        contents: "오늘 아침에 일찍 일어나기를 "
-//    )
-//    .frame(width: 343, height: 100)
-//}
+#Preview {
+    TrainingListCard(
+        isEditMode: .constant(false),
+        imageName: ImageLiterals.osilwan.rawValue,
+        date: Date(),
+        contents: "오늘 아침에 일찍 일어나기를 실패해버리다..\n그럼에도 불구하고. 어쩌구 저쩌구.....",
+        onDelete: {}
+    )
+    .frame(width: 343, height: 100)
+    
+    TrainingListCard(
+        isEditMode: .constant(true),
+        imageName: ImageLiterals.osilwan.rawValue,
+        date: Date(),
+        contents: "오늘 아침에 일찍 일어나기를 실패해버리다..\n그럼에도 불구하고. 어쩌구 저쩌구.....",
+        onDelete: {}
+    )
+    .frame(width: 343, height: 100)
+    
+    TrainingListCard(
+        isEditMode: .constant(true),
+        imageName: ImageLiterals.osilwan.rawValue,
+        date: Date(),
+        contents: "오늘 아침에 일찍 일어나기를 ",
+        onDelete: {}
+    )
+    .frame(width: 343, height: 100)
+}
