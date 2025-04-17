@@ -29,7 +29,7 @@ enum DetailTrainingType {
         case .writeEmpathy:
             "“스스로를 다정하게 위로해볼까요?”\n실패한 자신에게 따뜻한 한마디를 건네보세요."
         case .writeGoal:
-            "“다시 도전할 목표를 세워볼까요?”\n실패를 극복하기 위한 구체적인 목표를 작성합니다."
+            "“다시 도전할 목표를 세워볼까요?”\n실패를 극복하기 위한 목표를 작성해봅니다."
         case .shoutFail:
             "“오실완!” “오늘 실패 완료!”\n직접 오실완을 외치고 기록을 저장합니다."
         }
@@ -61,6 +61,21 @@ enum DetailTrainingType {
             구체적인 목표를 작성해주세요!
             """
         case .shoutFail: ""
+        }
+    }
+    
+    var iconName: String {
+        switch self {
+        case .writeFail:
+            return ImageLiterals.icnWriteFail.rawValue
+        case .writeLearn:
+            return ImageLiterals.icnWriteLearn.rawValue
+        case .writeEmpathy:
+            return ImageLiterals.icnWriteEmpathy.rawValue
+        case .writeGoal:
+            return ImageLiterals.icnWriteGoal.rawValue
+        case .shoutFail:
+            return ImageLiterals.icnShoutFail.rawValue
         }
     }
 }
