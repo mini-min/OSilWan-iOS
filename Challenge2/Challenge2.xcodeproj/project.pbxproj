@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D2A69592DB386B10021720F /* MainBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A69582DB386B10021720F /* MainBottomView.swift */; };
 		3D2A695D2DB38EB80021720F /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A695C2DB38EB80021720F /* SpeechRecognizer.swift */; };
 		3D2A695F2DB3998E0021720F /* OSWTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A695E2DB3998E0021720F /* OSWTip.swift */; };
 		3D6D54FA2DAB84170055A6E1 /* TrainingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D54F92DAB84170055A6E1 /* TrainingCard.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D2A69582DB386B10021720F /* MainBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBottomView.swift; sourceTree = "<group>"; };
 		3D2A695C2DB38EB80021720F /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		3D2A695E2DB3998E0021720F /* OSWTip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSWTip.swift; sourceTree = "<group>"; };
 		3D6D54F92DAB84170055A6E1 /* TrainingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingCard.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			children = (
 				3DAB25FE2DAB6A8600FDA362 /* MainView.swift */,
 				3D6D54F92DAB84170055A6E1 /* TrainingCard.swift */,
+				3D2A69582DB386B10021720F /* MainBottomView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				3DFB940E2DAE28370072ECF8 /* TrainingAction.swift in Sources */,
 				3D6D554F2DAD34E70055A6E1 /* Text+.swift in Sources */,
 				3DAB26052DAB6AA300FDA362 /* TrainingListView.swift in Sources */,
+				3D2A69592DB386B10021720F /* MainBottomView.swift in Sources */,
 				3DAB25EB2DAA8E6A00FDA362 /* Challenge2App.swift in Sources */,
 				3DFB94122DAE2A2B0072ECF8 /* TrainingStore.swift in Sources */,
 				3D6D551A2DAC8F0D0055A6E1 /* ImageLiterals.swift in Sources */,

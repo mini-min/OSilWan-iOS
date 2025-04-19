@@ -8,16 +8,24 @@
 import SwiftUI
 
 struct TrainingCard: View {
-    let title: String
+    private let type: TrainingType
+    
+    init(type: TrainingType) {
+        self.type = type
+    }
     
     var body: some View {
         VStack {
-            Text(title)
-                .font(.system(size: 16, weight: .heavy))
+            Text(type.title)
+                .font(.system(size: 17, weight: .heavy))
                 .foregroundStyle(.osWblack)
-            Image(.test)
+                .padding(.top, 10)
+            Image(type.imageName)
+                .resizable()
+                .scaledToFit()
+                .padding(5)
         }
-        .frame(width: 105, height: 150)
+        .frame(width: 110, height: 180)
         .background(.white)
         .cornerRadius(12)
         .shadow(radius: 20)
@@ -25,5 +33,5 @@ struct TrainingCard: View {
 }
 
 #Preview {
-    TrainingCard(title: "Learning\nTraning")
+    TrainingCard(type: .goal)
 }
