@@ -33,7 +33,7 @@ struct TrainingListCard: View {
         HStack {
             if isEditMode {
                 Button(action: onDelete) {
-                    Image(.icDelete)
+                    Image(.icnDelete)
                         .padding(.trailing, 10)
                 }
             }

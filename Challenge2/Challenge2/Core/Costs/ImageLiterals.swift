@@ -8,6 +8,14 @@
 import Foundation
 
 enum ImageLiterals: String {
-    case test = "test"
     case osilwan = "osilwan"
+    case osilwan1 = "osilwan1"
+    case osilwan2 = "osilwan2"
+    case osilwan3 = "osilwan3"
+    
+    case icnShoutFail = "icn_shoutFail"
+    case icnWriteEmpathy = "icn_writeEmpathy"
+    case icnWriteFail = "icn_writeFail"
+    case icnWriteGoal = "icn_writeGoal"
+    case icnWriteLearn = "icn_writeLearn"
 }
