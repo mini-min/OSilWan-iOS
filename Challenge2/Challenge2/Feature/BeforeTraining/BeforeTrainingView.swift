@@ -13,16 +13,26 @@ struct BeforeTrainingView: View {
     
     var body: some View {
         VStack {
-            VStack(alignment: .leading, spacing: 10) {
-                Text(trainingType.title)
-                    .font(.title)
-                    .fontWeight(.heavy)
-                Text(trainingType.description)
-                    .font(.callout)
-                    .foregroundStyle(.oswGray1)
+            HStack {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(trainingType.title)
+                        .font(.title)
+                        .fontWeight(.heavy)
+                    Text(trainingType.description)
+                        .font(.callout)
+                        .foregroundStyle(.oswGray1)
+                        .lineSpacing(5)
+                }
+                .padding(.top, 32)
+                .background(
+                    Image(trainingType.imageName)
+                        .padding(.leading, 300)
+                        .opacity(0.5)
+                )
+
+                Spacer()
             }
-            .padding(.top, 64)
-            
+            .padding(.leading, 24)
             
             VStack(alignment: .leading, spacing: 12) {
                 Text("트레이닝 리스트")
@@ -33,9 +43,8 @@ struct BeforeTrainingView: View {
                     BeforeTrainingListCard(trainingType: training)
                 }
             }
-            .padding(.horizontal, 18)
-            .padding(.top, 64)
-            
+            .padding(.horizontal, 12)
+            .padding(.top, 48)
             
             Spacer()
             
@@ -57,5 +66,7 @@ struct BeforeTrainingView: View {
 }
 
 #Preview {
-    BeforeTrainingView(trainingType: .learning)
+    NavigationView {
+        BeforeTrainingView(trainingType: .learning)
+    }
 }
