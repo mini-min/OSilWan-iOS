@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 struct TrainingView: View {
     @Environment(\.dismiss) private var dismiss
@@ -18,6 +19,7 @@ struct TrainingView: View {
     @FocusState private var isFailureFocused: Bool
     @FocusState private var isNextFocused: Bool
 
+    private let oswTip = OSWTip()
     let trainingType: TrainingType
 
     init(trainingType: TrainingType) {
@@ -95,6 +97,14 @@ struct TrainingView: View {
             .padding(.horizontal, 16)
 
             Spacer()
+            
+            if store.state.currentStep == 3 && !speechRecognizer.isRecognizedOsilwan {
+                TipView(oswTip) { _ in
+                    speechRecognizer.isRecognizedOsilwan = true
+                    speechRecognizer.stopTranscribing()
+                }
+                .padding()
+            }
 
             HStack(spacing: 12) {
                 OSWButton(

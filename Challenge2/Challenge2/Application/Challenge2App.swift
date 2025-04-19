@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 @main
 struct Challenge2App: App {
@@ -28,5 +29,9 @@ struct Challenge2App: App {
             MainView()
         }
         .modelContainer(sharedModelContainer)
+    }
+    
+    init() {
+        try? Tips.configure()
     }
 }
