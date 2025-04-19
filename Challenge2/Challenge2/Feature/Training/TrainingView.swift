@@ -13,6 +13,7 @@ struct TrainingView: View {
     @Environment(\.modelContext) private var modelContext
 
     @StateObject private var store: TrainingStore
+    @StateObject private var speechRecognizer = SpeechRecognizer()
     
     @FocusState private var isFailureFocused: Bool
     @FocusState private var isNextFocused: Bool
@@ -122,13 +123,24 @@ struct TrainingView: View {
                         }
                     }
                 )
-                .disabled(store.state.isNextButtonDisabled)
+                .disabled(
+                    store.state.isNextButtonDisabled ||
+                    (store.state.currentStep == 3 && !speechRecognizer.isRecognizedOsilwan)
+
+                )
             }
             .padding(.bottom, 10)
         }
         .navigationTitle(trainingType.title)
         .onAppear { updateFocus() }
-        .onChange(of: store.state.currentStep) { updateFocus() }
+        .onChange(of: store.state.currentStep) {
+            updateFocus()
+            Task {
+                store.state.currentStep == 3
+                ? try? await speechRecognizer.startTranscribing()
+                : speechRecognizer.stopTranscribing()
+            }
+        }
     }
 }
 

@@ -10,12 +10,16 @@ import Speech
 
 final class SpeechRecognizer: ObservableObject {
     @Published var recognizedText: String = ""
+    @Published var isRecognizedOsilwan: Bool = false
     
     private let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "ko-KR"))
     private var request: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
-    
+    private let validKeywords = [
+        "오실완", "오실 완", "오실원", "오실 원", "오실환", "오실 환", "오 시환", "5시 완", "오 시원", "호 시환", "오지환"
+    ]
+
     init() {
         Task {
             await requestAuthorization()
@@ -68,14 +72,15 @@ final class SpeechRecognizer: ObservableObject {
         self.audioEngine.prepare()
         try self.audioEngine.start()
         
-        self.recognitionTask = recognizer.recognitionTask(
-            with: request
-        ) { [weak self] result, error in
+        self.recognitionTask = recognizer.recognitionTask(with: request) { [weak self] result, error in
             guard let self else { return }
+
             if let result {
                 let transcription = result.bestTranscription.formattedString
                 Task { @MainActor in
                     self.recognizedText = transcription
+                    self.isRecognizedOsilwan = self.validKeywords.contains { transcription.contains($0) }
+                    print("transcription: \(transcription)")
                 }
             }
         }
