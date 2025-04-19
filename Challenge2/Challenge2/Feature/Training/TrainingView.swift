@@ -10,7 +10,7 @@ import SwiftData
 import TipKit
 
 struct TrainingView: View {
-    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var coordinator: Coordinator
     @Environment(\.modelContext) private var modelContext
 
     @StateObject private var store: TrainingStore
@@ -127,7 +127,7 @@ struct TrainingView: View {
                                 nextText: store.state.nextText
                             )
                             modelContext.insert(record)
-                            dismiss()
+                            coordinator.popToRoot()
                         } else {
                             store.send(.incrementStep)
                         }

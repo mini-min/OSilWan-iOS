@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct TrainingListView: View {
+    @EnvironmentObject private var coordinator: Coordinator
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \TrainingRecord.savedDate, order: .reverse) private var records: [TrainingRecord]
     
