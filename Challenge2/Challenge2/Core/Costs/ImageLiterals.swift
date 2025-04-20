@@ -8,7 +8,6 @@
 import Foundation
 
 enum ImageLiterals: String {
-    case osilwan = "osilwan"
     case osilwan1 = "osilwan1"
     case osilwan2 = "osilwan2"
     case osilwan3 = "osilwan3"

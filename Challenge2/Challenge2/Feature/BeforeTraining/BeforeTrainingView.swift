@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BeforeTrainingView: View {
-    @State private var isTrainingStarted: Bool = false
+    @EnvironmentObject private var coordinator: Coordinator
     let trainingType: TrainingType
     
     var body: some View {
@@ -53,20 +53,9 @@ struct BeforeTrainingView: View {
                 size: .full,
                 title: "트레이닝 시작하기",
                 action: {
-                    isTrainingStarted = true
+                    coordinator.push(.training(trainingType: trainingType))
                 }
             )
         }
-        .navigationDestination(
-            isPresented: $isTrainingStarted,
-            destination: { TrainingView(trainingType: trainingType)
-            }
-        )
-    }
-}
-
-#Preview {
-    NavigationView {
-        BeforeTrainingView(trainingType: .learning)
     }
 }

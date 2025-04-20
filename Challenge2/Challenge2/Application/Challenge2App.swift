@@ -7,9 +7,12 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 @main
 struct Challenge2App: App {
+    @StateObject private var coordinator = Coordinator()
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             TrainingRecord.self
@@ -25,8 +28,13 @@ struct Challenge2App: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            RootNavigationView()
+                .environmentObject(coordinator)
         }
         .modelContainer(sharedModelContainer)
+    }
+    
+    init() {
+        try? Tips.configure()
     }
 }

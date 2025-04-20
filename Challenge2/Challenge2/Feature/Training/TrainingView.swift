@@ -7,16 +7,20 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 struct TrainingView: View {
-    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var coordinator: Coordinator
     @Environment(\.modelContext) private var modelContext
+    @AppStorage("shouldAnimate") private var shouldAnimate: Bool = false
 
     @StateObject private var store: TrainingStore
+    @StateObject private var speechRecognizer = SpeechRecognizer()
     
     @FocusState private var isFailureFocused: Bool
     @FocusState private var isNextFocused: Bool
 
+    private let oswTip = OSWTip()
     let trainingType: TrainingType
 
     init(trainingType: TrainingType) {
@@ -94,6 +98,14 @@ struct TrainingView: View {
             .padding(.horizontal, 16)
 
             Spacer()
+            
+            if store.state.currentStep == 3 && !speechRecognizer.isRecognizedOsilwan {
+                TipView(oswTip) { _ in
+                    speechRecognizer.isRecognizedOsilwan = true
+                    speechRecognizer.stopTranscribing()
+                }
+                .padding()
+            }
 
             HStack(spacing: 12) {
                 OSWButton(
@@ -116,19 +128,30 @@ struct TrainingView: View {
                                 nextText: store.state.nextText
                             )
                             modelContext.insert(record)
-                            dismiss()
+                            coordinator.popToRoot()
+                            shouldAnimate = true
                         } else {
                             store.send(.incrementStep)
                         }
                     }
                 )
-                .disabled(store.state.isNextButtonDisabled)
+                .disabled(
+                    store.state.isNextButtonDisabled ||
+                    (store.state.currentStep == 3 && !speechRecognizer.isRecognizedOsilwan)
+                )
             }
             .padding(.bottom, 10)
         }
         .navigationTitle(trainingType.title)
         .onAppear { updateFocus() }
-        .onChange(of: store.state.currentStep) { updateFocus() }
+        .onChange(of: store.state.currentStep) {
+            updateFocus()
+            Task {
+                store.state.currentStep == 3
+                ? try? await speechRecognizer.startTranscribing()
+                : speechRecognizer.stopTranscribing()
+            }
+        }
     }
 }
 
