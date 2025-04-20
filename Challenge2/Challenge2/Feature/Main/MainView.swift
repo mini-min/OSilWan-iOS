@@ -39,7 +39,7 @@ struct MainView: View {
                         }
                     }
                 }
-                .padding(.top, 30)
+                .padding(.top, 40)
                 
                 Spacer()
                 
@@ -47,20 +47,20 @@ struct MainView: View {
                     .font(.headline)
                     .fontWeight(.bold)
                     .frame(width: 350, alignment: .leading)
-                    .padding(.bottom, 20)
+                    .padding(.bottom, -20)
                 
-                VStack(spacing: -10) {
+                VStack(spacing: -30) {
                     ZStack {
                         Image(.speechBubble)
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 360)
+                            .frame(width: 380)
 
                         Text(currentMessage)
-                            .font(.caption)
+                            .font(.system(size: 14, weight: .heavy))
                             .lineSpacing(8)
                             .foregroundColor(.osWblack)
-                            .padding(.bottom, 60)
+                            .padding(.bottom, 20)
                     }
                     Image("\(min(currentFrame + 1, 13))")
                         .onTapGesture {
@@ -71,7 +71,6 @@ struct MainView: View {
                         }
                 }
                 .padding(.bottom, 30)
-
             }
         }
         .toolbar {
@@ -85,11 +84,11 @@ struct MainView: View {
                 }
             }
             
-            ToolbarItem(placement: .topBarLeading) {
-                Image(.mainLogo)
-                    .padding(.top, 16)
-                    .padding(.leading, 8)
-            }
+//            ToolbarItem(placement: .topBarLeading) {
+//                Image(.mainLogo)
+//                    .padding(.top, 16)
+//                    .padding(.leading, 8)
+//            }
         }
         .onAppear {
             currentFrame = 0
