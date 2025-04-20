@@ -8,11 +8,22 @@
 import SwiftUI
 import SwiftData
 
+enum MainStatus {
+    case normal, animating
+}
+
 struct MainView: View {
     @EnvironmentObject private var coordinator: Coordinator
+    @AppStorage("shouldAnimate") private var shouldAnimate: Bool = false
     
     @State private var currentMessage: String = StringLiterals.MainMessage.motivation1.rawValue
+    @State private var currentFrame = 0
+    @State private var isAnimating = false
+    @State private var timer: Timer? = nil
+    
     @Query private var records: [TrainingRecord]
+    
+    var status: MainStatus = .animating
     
     var body: some View {
         ZStack {
@@ -30,15 +41,37 @@ struct MainView: View {
                 }
                 .padding(.top, 30)
                 
+                Spacer()
+                
                 Text("지금까지 \(records.count)개의 트레이닝을 완료했어요!")
                     .font(.headline)
                     .fontWeight(.bold)
-                    .padding(.top, 30)
                     .frame(width: 350, alignment: .leading)
+                    .padding(.bottom, 20)
                 
-                MainBottomView(currentMessage: $currentMessage)
-                    .padding(.top, 10)
-                
+                VStack(spacing: -10) {
+                    ZStack {
+                        Image(.speechBubble)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 360)
+
+                        Text(currentMessage)
+                            .font(.caption)
+                            .lineSpacing(8)
+                            .foregroundColor(.osWblack)
+                            .padding(.bottom, 60)
+                    }
+                    Image("\(min(currentFrame + 1, 13))")
+                        .onTapGesture {
+                            let candidates = StringLiterals.MainMessage.allCases.filter { $0.rawValue != currentMessage }
+                            if let newMessage = candidates.randomElement() {
+                                currentMessage = newMessage.rawValue
+                            }
+                        }
+                }
+                .padding(.bottom, 30)
+
             }
         }
         .toolbar {
@@ -58,5 +91,39 @@ struct MainView: View {
                     .padding(.leading, 8)
             }
         }
+        .onAppear {
+            currentFrame = 0
+        }
+        .onChange(of: shouldAnimate) {
+            if shouldAnimate {
+                startAnimation()
+                shouldAnimate = false
+            }
+        }
+    }
+}
+
+private extension MainView {
+    func startAnimation() {
+        guard !isAnimating else { return }
+        isAnimating = true
+        currentFrame = 0
+
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0 / 13.0, repeats: true) { time in
+            currentFrame += 1
+            if currentFrame >= 12 {
+                time.invalidate()
+                isAnimating = false
+                currentFrame = 12
+            }
+        }
+    }
+}
+
+#Preview {
+    NavigationStack {
+        MainView()
+            .environmentObject(Coordinator())
     }
 }

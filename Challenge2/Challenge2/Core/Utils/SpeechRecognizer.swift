@@ -17,7 +17,7 @@ final class SpeechRecognizer: ObservableObject {
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
     private let validKeywords = [
-        "오실완", "오실 완", "오실원", "오실 원", "오실환", "오실 환", "오 시환", "5시 완", "오 시원", "호 시환", "오지환"
+        "오실완", "오실 완", "오실원", "오실 원", "오실환", "오실 환", "오 시환", "5시 완", "오 시원", "호 시환", "오지환", "호실만", "오실 반", "오실만"
     ]
 
     init() {

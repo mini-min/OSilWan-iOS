@@ -12,6 +12,7 @@ import TipKit
 struct TrainingView: View {
     @EnvironmentObject private var coordinator: Coordinator
     @Environment(\.modelContext) private var modelContext
+    @AppStorage("shouldAnimate") private var shouldAnimate: Bool = false
 
     @StateObject private var store: TrainingStore
     @StateObject private var speechRecognizer = SpeechRecognizer()
@@ -128,6 +129,7 @@ struct TrainingView: View {
                             )
                             modelContext.insert(record)
                             coordinator.popToRoot()
+                            shouldAnimate = true
                         } else {
                             store.send(.incrementStep)
                         }
@@ -136,7 +138,6 @@ struct TrainingView: View {
                 .disabled(
                     store.state.isNextButtonDisabled ||
                     (store.state.currentStep == 3 && !speechRecognizer.isRecognizedOsilwan)
-
                 )
             }
             .padding(.bottom, 10)

@@ -68,32 +68,3 @@ struct TrainingListCard: View {
         }
     }
 }
-
-#Preview {
-    TrainingListCard(
-        isEditMode: .constant(false),
-        imageName: ImageLiterals.osilwan.rawValue,
-        date: Date(),
-        contents: "오늘 아침에 일찍 일어나기를 실패해버리다..\n그럼에도 불구하고. 어쩌구 저쩌구.....",
-        onDelete: {}
-    )
-    .frame(width: 343, height: 100)
-    
-    TrainingListCard(
-        isEditMode: .constant(true),
-        imageName: ImageLiterals.osilwan.rawValue,
-        date: Date(),
-        contents: "오늘 아침에 일찍 일어나기를 실패해버리다..\n그럼에도 불구하고. 어쩌구 저쩌구.....",
-        onDelete: {}
-    )
-    .frame(width: 343, height: 100)
-    
-    TrainingListCard(
-        isEditMode: .constant(true),
-        imageName: ImageLiterals.osilwan.rawValue,
-        date: Date(),
-        contents: "오늘 아침에 일찍 일어나기를 ",
-        onDelete: {}
-    )
-    .frame(width: 343, height: 100)
-}
