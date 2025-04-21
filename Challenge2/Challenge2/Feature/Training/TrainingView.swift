@@ -104,6 +104,7 @@ struct TrainingView: View {
                     speechRecognizer.isRecognizedOsilwan = true
                     speechRecognizer.stopTranscribing()
                 }
+                .tint(.main)
                 .padding()
             }
 

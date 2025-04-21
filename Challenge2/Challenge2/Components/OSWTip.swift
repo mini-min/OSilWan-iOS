@@ -21,6 +21,9 @@ struct OSWTip: Tip {
     }
     
     var actions: [Action] {
-        Action(title: "지금 말할 수 없어요")
+        Action {
+            Text("지금 말할 수 없어요")
+                .foregroundStyle(.main)
+        }
     }
 }
