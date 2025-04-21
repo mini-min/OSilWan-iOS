@@ -8,10 +8,6 @@
 import SwiftUI
 import SwiftData
 
-enum MainStatus {
-    case normal, animating
-}
-
 struct MainView: View {
     @EnvironmentObject private var coordinator: Coordinator
     @AppStorage("shouldAnimate") private var shouldAnimate: Bool = false
@@ -22,9 +18,7 @@ struct MainView: View {
     @State private var timer: Timer? = nil
     
     @Query private var records: [TrainingRecord]
-    
-    var status: MainStatus = .animating
-    
+        
     var body: some View {
         ZStack {
             Color.osWbackground.ignoresSafeArea(.all)
@@ -83,7 +77,7 @@ struct MainView: View {
                 Button {
                     coordinator.push(.trainingList)
                 } label: {
-                    Image(systemName: "line.3.horizontal")
+                    Image(systemName: "clock.arrow.circlepath")
                         .padding(.top, 16)
                         .padding(.trailing, 8)
                 }
