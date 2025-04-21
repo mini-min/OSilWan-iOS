@@ -49,14 +49,6 @@ public struct OSWTextEditor: View {
             RoundedRectangle(cornerRadius: 12)
                 .stroke(state.borderColor, lineWidth: 2)
         )
-        .overlay(alignment: .bottomTrailing) {
-            Text("\(text.count) / 200")
-                .font(.system(size: 12))
-                .foregroundColor(.oswGray1)
-                .padding(.trailing, 15)
-                .padding(.bottom, 15)
-                .onChange(of: text) {}
-        }
     }
 }
 
@@ -65,13 +57,11 @@ public struct OSWTextEditor: View {
 public enum OSWTextFieldStatus {
     case normal
     case focus
-    case error
     
     var borderColor: Color {
         switch self {
         case .normal: return .clear
         case .focus: return .main
-        case .error: return .warning
         }
     }
 }

@@ -59,6 +59,7 @@ struct TrainingListCard: View {
                         .frame(width: 234, alignment: .leading)
                 }
                 .padding(.leading, 16)
+                .padding(.vertical, 12)
                 .frame(minHeight: 100, alignment: .leading)
                 
                 Spacer()
