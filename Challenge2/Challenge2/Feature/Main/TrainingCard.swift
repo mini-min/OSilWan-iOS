@@ -24,11 +24,12 @@ struct TrainingCard: View {
                 .resizable()
                 .scaledToFit()
                 .padding(5)
+                .opacity(0.9)
         }
         .frame(width: 110, height: 180)
         .background(.white)
         .cornerRadius(12)
-        .shadow(radius: 20)
+        .shadow(color: .oswGray1.opacity(0.4), radius: 20, x: 0, y: 5)
     }
 }
 

@@ -30,6 +30,17 @@ struct MainView: View {
             Color.osWbackground.ignoresSafeArea(.all)
             
             VStack {
+                Text.styledText(
+                    fullText: "지금까지 \(records.count)개의 \n실패 트레이닝을 완료했어요!",
+                    highlightedText: "\(records.count)",
+                    baseFont: .title3.weight(.heavy),
+                    highlightedFont: .title2.weight(.heavy)
+                )
+                .lineSpacing(5)
+                .frame(width: 350, alignment: .leading)
+                .padding(.top, 12)
+                .padding(.bottom, 28)
+                
                 HStack(spacing: 12) {
                     ForEach(TrainingType.allCases, id: \.self) { type in
                         Button {
@@ -39,28 +50,21 @@ struct MainView: View {
                         }
                     }
                 }
-                .padding(.top, 40)
                 
                 Spacer()
                 
-                Text("지금까지 \(records.count)개의 트레이닝을 완료했어요!")
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .frame(width: 350, alignment: .leading)
-                    .padding(.bottom, -20)
-                
-                VStack(spacing: -30) {
+                VStack(spacing: 10) {
                     ZStack {
                         Image(.speechBubble)
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 380)
+                            .frame(width: 280)
 
                         Text(currentMessage)
-                            .font(.system(size: 14, weight: .heavy))
+                            .font(.system(size: 12, weight: .bold))
                             .lineSpacing(8)
-                            .foregroundColor(.osWblack)
-                            .padding(.bottom, 20)
+                            .foregroundColor(.sub)
+                            .padding(.bottom, 40)
                     }
                     Image("\(min(currentFrame + 1, 13))")
                         .onTapGesture {
@@ -68,9 +72,10 @@ struct MainView: View {
                             if let newMessage = candidates.randomElement() {
                                 currentMessage = newMessage.rawValue
                             }
+                            startAnimation()
                         }
                 }
-                .padding(.bottom, 30)
+                .padding(.bottom, 40)
             }
         }
         .toolbar {
@@ -83,12 +88,6 @@ struct MainView: View {
                         .padding(.trailing, 8)
                 }
             }
-            
-//            ToolbarItem(placement: .topBarLeading) {
-//                Image(.mainLogo)
-//                    .padding(.top, 16)
-//                    .padding(.leading, 8)
-//            }
         }
         .onAppear {
             currentFrame = 0
