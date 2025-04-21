@@ -19,18 +19,19 @@ struct OSWProgressBar: View {
                         Circle()
                             .fill(index <= currentStep ? .main : .oswGray3)
                             .frame(width: 30, height: 30)
-                            .animation(.easeInOut, value: currentStep)
+                            .scaleEffect(index == currentStep ? 1.2 : 1.0)
+                            .animation(.easeInOut(duration: 0.3), value: currentStep)
                         
                         Text("\(index)")
                             .font(.system(size: 16, weight: .bold))
                             .foregroundColor(index <= currentStep ? .osWblack : .oswGray1)
-                            .animation(.easeInOut(duration: 1), value: currentStep)
+                            .animation(.easeInOut(duration: 0.3), value: currentStep)
                     }
                     
                     if index != totalSteps {
-                        Rectangle()
+                        RoundedRectangle(cornerRadius: 10)
                             .fill(index < currentStep ? .main : .oswGray3)
-                            .frame(height: 6)
+                            .frame(height: 5)
                             .animation(.easeInOut(duration: 0.5), value: currentStep)
                     }
                 }

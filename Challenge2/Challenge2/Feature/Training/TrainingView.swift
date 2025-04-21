@@ -37,6 +37,7 @@ struct TrainingView: View {
                     set: { _ in }
                 )
             )
+            .padding([.horizontal, .top], 8)
             .padding(.bottom, 35)
 
             VStack(alignment: .leading) {
