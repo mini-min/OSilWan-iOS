@@ -37,6 +37,7 @@ struct TrainingView: View {
                     set: { _ in }
                 )
             )
+            .padding([.horizontal, .top], 8)
             .padding(.bottom, 35)
 
             VStack(alignment: .leading) {
@@ -104,6 +105,7 @@ struct TrainingView: View {
                     speechRecognizer.isRecognizedOsilwan = true
                     speechRecognizer.stopTranscribing()
                 }
+                .tint(.main)
                 .padding()
             }
 
@@ -150,6 +152,12 @@ struct TrainingView: View {
                 store.state.currentStep == 3
                 ? try? await speechRecognizer.startTranscribing()
                 : speechRecognizer.stopTranscribing()
+            }
+        }
+        .onChange(of: speechRecognizer.isRecognizedOsilwan) { _, newValue in
+            if newValue {
+                let generator = UINotificationFeedbackGenerator()
+                generator.notificationOccurred(.success)
             }
         }
     }

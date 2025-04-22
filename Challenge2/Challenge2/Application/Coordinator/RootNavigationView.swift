@@ -24,5 +24,6 @@ struct RootNavigationView: View {
                     }
                 }
         }
+        .tint(.osWblack)
     }
 }
