@@ -154,6 +154,12 @@ struct TrainingView: View {
                 : speechRecognizer.stopTranscribing()
             }
         }
+        .onChange(of: speechRecognizer.isRecognizedOsilwan) { _, newValue in
+            if newValue {
+                let generator = UINotificationFeedbackGenerator()
+                generator.notificationOccurred(.success)
+            }
+        }
     }
 }
 
