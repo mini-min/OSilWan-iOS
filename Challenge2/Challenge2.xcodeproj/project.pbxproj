@@ -17,7 +17,6 @@
 		3D6D551C2DAC8F430055A6E1 /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D551B2DAC8F430055A6E1 /* StringLiterals.swift */; };
 		3D6D552D2DAC93180055A6E1 /* DetailTrainingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D552C2DAC93180055A6E1 /* DetailTrainingType.swift */; };
 		3D6D552F2DAC96A80055A6E1 /* OSWProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D552E2DAC96A80055A6E1 /* OSWProgressBar.swift */; };
-		3D6D554B2DACEF6A0055A6E1 /* TrainingListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D554A2DACEF6A0055A6E1 /* TrainingListCard.swift */; };
 		3D6D554F2DAD34E70055A6E1 /* Text+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D554E2DAD34E70055A6E1 /* Text+.swift */; };
 		3D6D55512DADF19D0055A6E1 /* TrainingRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D55502DADF19D0055A6E1 /* TrainingRecord.swift */; };
 		3DA566802DAF38B800558130 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA5667F2DAF38B800558130 /* Date+.swift */; };
@@ -48,7 +47,6 @@
 		3D6D551B2DAC8F430055A6E1 /* StringLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiterals.swift; sourceTree = "<group>"; };
 		3D6D552C2DAC93180055A6E1 /* DetailTrainingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTrainingType.swift; sourceTree = "<group>"; };
 		3D6D552E2DAC96A80055A6E1 /* OSWProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSWProgressBar.swift; sourceTree = "<group>"; };
-		3D6D554A2DACEF6A0055A6E1 /* TrainingListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingListCard.swift; sourceTree = "<group>"; };
 		3D6D554E2DAD34E70055A6E1 /* Text+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+.swift"; sourceTree = "<group>"; };
 		3D6D55502DADF19D0055A6E1 /* TrainingRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingRecord.swift; sourceTree = "<group>"; };
 		3DA5667F2DAF38B800558130 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
@@ -216,7 +214,6 @@
 			isa = PBXGroup;
 			children = (
 				3DAB26042DAB6AA300FDA362 /* TrainingListView.swift */,
-				3D6D554A2DACEF6A0055A6E1 /* TrainingListCard.swift */,
 			);
 			path = TrainingList;
 			sourceTree = "<group>";
@@ -346,7 +343,6 @@
 				3D2A69662DB3C50C0021720F /* RootNavigationView.swift in Sources */,
 				3D6D551C2DAC8F430055A6E1 /* StringLiterals.swift in Sources */,
 				3DAB26112DAB755F00FDA362 /* OSWTextEditor.swift in Sources */,
-				3D6D554B2DACEF6A0055A6E1 /* TrainingListCard.swift in Sources */,
 				3D2A695D2DB38EB80021720F /* SpeechRecognizer.swift in Sources */,
 				3D6D54FC2DAC8B7B0055A6E1 /* TrainingType.swift in Sources */,
 				3DFB94102DAE298A0072ECF8 /* TrainingState.swift in Sources */,

@@ -124,8 +124,8 @@ struct MainView: View {
     // MARK: - [SubViews] Training Card
     
     struct AnimationSection: View {
-        @Binding private(set) var currentMessage: String
-        @Binding private(set) var currentFrame: Int
+        @Binding var currentMessage: String
+        @Binding var currentFrame: Int
         private(set) var onCharacterTap: () -> Void
         
         var body: some View {
