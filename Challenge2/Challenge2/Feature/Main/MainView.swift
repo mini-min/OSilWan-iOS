@@ -9,6 +9,9 @@ import SwiftUI
 import SwiftData
 
 struct MainView: View {
+    
+    // MARK: - Properties
+    
     @EnvironmentObject private var coordinator: Coordinator
     @AppStorage("shouldAnimate") private var shouldAnimate: Bool = false
     
@@ -18,58 +21,30 @@ struct MainView: View {
     @State private var timer: Timer? = nil
     
     @Query private var records: [TrainingRecord]
-        
+    
+    // MARK: - body
+    
     var body: some View {
         ZStack {
             Color.osWbackground.ignoresSafeArea(.all)
             
             VStack {
-                Text.styledText(
-                    fullText: "지금까지 \(records.count)개의 \n실패 트레이닝을 완료했어요!",
-                    highlightedText: "\(records.count)",
-                    baseFont: .title3.weight(.heavy),
-                    highlightedFont: .title2.weight(.heavy)
-                )
-                .lineSpacing(5)
-                .frame(width: 350, alignment: .leading)
-                .padding(.top, 12)
-                .padding(.bottom, 28)
-                
-                HStack(spacing: 12) {
-                    ForEach(TrainingType.allCases, id: \.self) { type in
-                        Button {
-                            coordinator.push(.beforeTraining(trainingType: type))
-                        } label: {
-                            TrainingCard(type: type)
-                        }
+                HeaderMessageSection(
+                    recordCount: records.count,
+                    onPush: { type in
+                        coordinator.push(.beforeTraining(trainingType: type))
                     }
-                }
+                )
                 
                 Spacer()
                 
-                VStack(spacing: 10) {
-                    ZStack {
-                        Image(.speechBubble)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 280)
-
-                        Text(currentMessage)
-                            .font(.system(size: 12, weight: .bold))
-                            .lineSpacing(8)
-                            .foregroundColor(.sub)
-                            .padding(.bottom, 40)
-                    }
-                    Image("\(min(currentFrame + 1, 13))")
-                        .onTapGesture {
-                            let candidates = StringLiterals.MainMessage.allCases.filter { $0.rawValue != currentMessage }
-                            if let newMessage = candidates.randomElement() {
-                                currentMessage = newMessage.rawValue
-                            }
-                            startAnimation()
-                        }
+                AnimationSection(
+                    currentMessage: $currentMessage,
+                    currentFrame: $currentFrame
+                ) {
+                    startAnimation()
+                    changeRandomMessage()
                 }
-                .padding(.bottom, 40)
             }
         }
         .toolbar {
@@ -83,9 +58,7 @@ struct MainView: View {
                 }
             }
         }
-        .onAppear {
-            currentFrame = 0
-        }
+        .onAppear { currentFrame = 0 }
         .onChange(of: shouldAnimate) {
             if shouldAnimate {
                 startAnimation()
@@ -93,14 +66,99 @@ struct MainView: View {
             }
         }
     }
+    
+    // MARK: - [SubViews] Header Message Section
+    
+    struct HeaderMessageSection: View {
+        let recordCount: Int
+        let onPush: (TrainingType) -> Void
+        
+        var body: some View {
+            Text.styledText(
+                fullText: "지금까지 \(recordCount)개의 \n실패 트레이닝을 완료했어요!",
+                highlightedText: "\(recordCount)",
+                baseFont: .title3.weight(.heavy),
+                highlightedFont: .title2.weight(.heavy)
+            )
+            .lineSpacing(5)
+            .frame(width: 350, alignment: .leading)
+            .padding(.top, 12)
+            .padding(.bottom, 28)
+            
+            HStack(spacing: 12) {
+                ForEach(TrainingType.allCases, id: \.self) { type in
+                    Button {
+                        onPush(type)
+                    } label: {
+                        TrainingCard(type: type)
+                    }
+                }
+            }
+        }
+    }
+    
+    // MARK: - [SubViews] Training Card
+    
+    struct TrainingCard: View {
+        let type: TrainingType
+        
+        var body: some View {
+            VStack {
+                Text(type.title)
+                    .font(.system(size: 17, weight: .heavy))
+                    .foregroundStyle(.osWblack)
+                    .padding(.top, 10)
+                Image(type.imageName)
+                    .resizable()
+                    .scaledToFit()
+                    .padding(5)
+                    .opacity(0.9)
+            }
+            .frame(width: 110, height: 180)
+            .background(.white)
+            .cornerRadius(12)
+            .shadow(color: .oswGray1.opacity(0.4), radius: 20, x: 0, y: 5)
+        }
+    }
+    
+    // MARK: - [SubViews] Training Card
+    
+    struct AnimationSection: View {
+        @Binding var currentMessage: String
+        @Binding var currentFrame: Int
+        let onCharacterTap: () -> Void
+        
+        var body: some View {
+            VStack(spacing: 10) {
+                ZStack {
+                    Image(.speechBubble)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 280)
+                    
+                    Text(currentMessage)
+                        .font(.system(size: 12, weight: .bold))
+                        .lineSpacing(8)
+                        .foregroundColor(.sub)
+                        .padding(.bottom, 40)
+                }
+                Image("\(currentFrame + 1)")
+                    .onTapGesture { onCharacterTap() }
+            }
+            .padding(.bottom, 40)
+        }
+    }
 }
 
+// MARK: - [Extension] Private Methods
+
 private extension MainView {
+    /// 캐릭터의 애니메이션을 동작하도록 하는 메서드
     func startAnimation() {
         guard !isAnimating else { return }
         isAnimating = true
         currentFrame = 0
-
+        
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 1.0 / 13.0, repeats: true) { time in
             currentFrame += 1
@@ -111,11 +169,11 @@ private extension MainView {
             }
         }
     }
-}
-
-#Preview {
-    NavigationStack {
-        MainView()
-            .environmentObject(Coordinator())
+    
+    /// 캐릭터의 위에 있는 말풍선의 문장을 랜덤으로 바뀌도록 만드는 메서드
+    func changeRandomMessage() {
+        currentMessage = StringLiterals.MainMessage.allCases
+            .filter { $0.rawValue != currentMessage }
+            .randomElement()?.rawValue ?? currentMessage
     }
 }
