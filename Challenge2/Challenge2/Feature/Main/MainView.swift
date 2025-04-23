@@ -22,7 +22,7 @@ struct MainView: View {
     
     @Query private var records: [TrainingRecord]
     
-    // MARK: - body
+    // MARK: - Body
     
     var body: some View {
         ZStack {
@@ -70,8 +70,8 @@ struct MainView: View {
     // MARK: - [SubViews] Header Message Section
     
     struct HeaderMessageSection: View {
-        let recordCount: Int
-        let onPush: (TrainingType) -> Void
+        private(set) var recordCount: Int
+        private(set) var onPush: (TrainingType) -> Void
         
         var body: some View {
             Text.styledText(
@@ -100,7 +100,7 @@ struct MainView: View {
     // MARK: - [SubViews] Training Card
     
     struct TrainingCard: View {
-        let type: TrainingType
+        private(set) var type: TrainingType
         
         var body: some View {
             VStack {
@@ -124,9 +124,9 @@ struct MainView: View {
     // MARK: - [SubViews] Training Card
     
     struct AnimationSection: View {
-        @Binding var currentMessage: String
-        @Binding var currentFrame: Int
-        let onCharacterTap: () -> Void
+        @Binding private(set) var currentMessage: String
+        @Binding private(set) var currentFrame: Int
+        private(set) var onCharacterTap: () -> Void
         
         var body: some View {
             VStack(spacing: 10) {

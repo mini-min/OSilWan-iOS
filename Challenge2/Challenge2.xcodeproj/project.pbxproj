@@ -13,7 +13,6 @@
 		3D2A69632DB3A7650021720F /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A69622DB3A7650021720F /* AppRoute.swift */; };
 		3D2A69662DB3C50C0021720F /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A69652DB3C50C0021720F /* RootNavigationView.swift */; };
 		3D6D54FC2DAC8B7B0055A6E1 /* TrainingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D54FB2DAC8B7B0055A6E1 /* TrainingType.swift */; };
-		3D6D55182DAC8E090055A6E1 /* BeforeTrainingListCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D55172DAC8E090055A6E1 /* BeforeTrainingListCard.swift */; };
 		3D6D551A2DAC8F0D0055A6E1 /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D55192DAC8F0D0055A6E1 /* ImageLiterals.swift */; };
 		3D6D551C2DAC8F430055A6E1 /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D551B2DAC8F430055A6E1 /* StringLiterals.swift */; };
 		3D6D552D2DAC93180055A6E1 /* DetailTrainingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D552C2DAC93180055A6E1 /* DetailTrainingType.swift */; };
@@ -45,7 +44,6 @@
 		3D2A69622DB3A7650021720F /* AppRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRoute.swift; sourceTree = "<group>"; };
 		3D2A69652DB3C50C0021720F /* RootNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
 		3D6D54FB2DAC8B7B0055A6E1 /* TrainingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingType.swift; sourceTree = "<group>"; };
-		3D6D55172DAC8E090055A6E1 /* BeforeTrainingListCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeTrainingListCard.swift; sourceTree = "<group>"; };
 		3D6D55192DAC8F0D0055A6E1 /* ImageLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiterals.swift; sourceTree = "<group>"; };
 		3D6D551B2DAC8F430055A6E1 /* StringLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiterals.swift; sourceTree = "<group>"; };
 		3D6D552C2DAC93180055A6E1 /* DetailTrainingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTrainingType.swift; sourceTree = "<group>"; };
@@ -227,7 +225,6 @@
 			isa = PBXGroup;
 			children = (
 				3DAB26002DAB6A8E00FDA362 /* BeforeTrainingView.swift */,
-				3D6D55172DAC8E090055A6E1 /* BeforeTrainingListCard.swift */,
 			);
 			path = BeforeTraining;
 			sourceTree = "<group>";
@@ -347,7 +344,6 @@
 				3D6D552D2DAC93180055A6E1 /* DetailTrainingType.swift in Sources */,
 				3DAB26012DAB6A8E00FDA362 /* BeforeTrainingView.swift in Sources */,
 				3D2A69662DB3C50C0021720F /* RootNavigationView.swift in Sources */,
-				3D6D55182DAC8E090055A6E1 /* BeforeTrainingListCard.swift in Sources */,
 				3D6D551C2DAC8F430055A6E1 /* StringLiterals.swift in Sources */,
 				3DAB26112DAB755F00FDA362 /* OSWTextEditor.swift in Sources */,
 				3D6D554B2DACEF6A0055A6E1 /* TrainingListCard.swift in Sources */,
