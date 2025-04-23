@@ -7,19 +7,16 @@
 
 import SwiftUI
 import SwiftData
+import ComposableArchitecture
 
 struct MainView: View {
     
     // MARK: - Properties
     
+    let store: StoreOf<MainFeature>
+    
     @EnvironmentObject private var coordinator: Coordinator
     @AppStorage("shouldAnimate") private var shouldAnimate: Bool = false
-    
-    @State private var currentMessage: String = MainCheerMessage.motivation1.rawValue
-    @State private var currentFrame = 0
-    @State private var isAnimating = false
-    @State private var timer: Timer? = nil
-    
     @Query private var records: [TrainingRecord]
     
     // MARK: - Body
@@ -39,11 +36,11 @@ struct MainView: View {
                 Spacer()
                 
                 AnimationSection(
-                    currentMessage: $currentMessage,
-                    currentFrame: $currentFrame
+                    currentMessage: store.state.currentMessage,
+                    currentFrame: store.state.currentFrame
                 ) {
-                    startAnimation()
-                    changeRandomMessage()
+                    store.send(.animationStart)
+                    store.send(.changeRandomMessage)
                 }
             }
         }
@@ -58,10 +55,10 @@ struct MainView: View {
                 }
             }
         }
-        .onAppear { currentFrame = 0 }
+        .onAppear { store.send(.onAppear) }
         .onChange(of: shouldAnimate) {
             if shouldAnimate {
-                startAnimation()
+                store.send(.animationStart)
                 shouldAnimate = false
             }
         }
@@ -124,8 +121,8 @@ struct MainView: View {
     // MARK: - [SubViews] Training Card
     
     struct AnimationSection: View {
-        @Binding var currentMessage: String
-        @Binding var currentFrame: Int
+        private(set) var currentMessage: String
+        private(set) var currentFrame: Int
         private(set) var onCharacterTap: () -> Void
         
         var body: some View {
@@ -147,33 +144,5 @@ struct MainView: View {
             }
             .padding(.bottom, 40)
         }
-    }
-}
-
-// MARK: - [Extension] Private Methods
-
-private extension MainView {
-    /// 캐릭터의 애니메이션을 동작하도록 하는 메서드
-    func startAnimation() {
-        guard !isAnimating else { return }
-        isAnimating = true
-        currentFrame = 0
-        
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0 / 13.0, repeats: true) { time in
-            currentFrame += 1
-            if currentFrame >= 12 {
-                time.invalidate()
-                isAnimating = false
-                currentFrame = 12
-            }
-        }
-    }
-    
-    /// 캐릭터의 위에 있는 말풍선의 문장을 랜덤으로 바뀌도록 만드는 메서드
-    func changeRandomMessage() {
-        currentMessage = MainCheerMessage.allCases
-            .filter { $0.rawValue != currentMessage }
-            .randomElement()?.rawValue ?? currentMessage
     }
 }

@@ -30,6 +30,8 @@
 		3DAB26112DAB755F00FDA362 /* OSWTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB26102DAB755F00FDA362 /* OSWTextEditor.swift */; };
 		3DBB82142DB862B5006BA705 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3DBB82132DB862B5006BA705 /* Localizable.xcstrings */; };
 		3DBB821C2DB894AA006BA705 /* MainCheerMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBB821B2DB894AA006BA705 /* MainCheerMessage.swift */; };
+		3DBB82412DB8CA8E006BA705 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 3DBB82402DB8CA8E006BA705 /* ComposableArchitecture */; };
+		3DBB82432DB8CAC7006BA705 /* MainFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBB82422DB8CAC7006BA705 /* MainFeature.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,7 @@
 		3DAB26102DAB755F00FDA362 /* OSWTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSWTextEditor.swift; sourceTree = "<group>"; };
 		3DBB82132DB862B5006BA705 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		3DBB821B2DB894AA006BA705 /* MainCheerMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCheerMessage.swift; sourceTree = "<group>"; };
+		3DBB82422DB8CAC7006BA705 /* MainFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFeature.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DBB82412DB8CA8E006BA705 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				3DAB25FE2DAB6A8600FDA362 /* MainView.swift */,
+				3DBB82422DB8CAC7006BA705 /* MainFeature.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -245,6 +250,7 @@
 			);
 			name = Challenge2;
 			packageProductDependencies = (
+				3DBB82402DB8CA8E006BA705 /* ComposableArchitecture */,
 			);
 			productName = Challenge2;
 			productReference = 3DAB25D12DAA8E4A00FDA362 /* Challenge2.app */;
@@ -276,6 +282,7 @@
 			mainGroup = 3DAB25C82DAA8E4A00FDA362;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				3DBB823F2DB8CA8E006BA705 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3DAB25D22DAA8E4A00FDA362 /* Products */;
@@ -319,6 +326,7 @@
 				3DAB26012DAB6A8E00FDA362 /* BeforeTrainingView.swift in Sources */,
 				3D2A69662DB3C50C0021720F /* RootNavigationView.swift in Sources */,
 				3DBB821C2DB894AA006BA705 /* MainCheerMessage.swift in Sources */,
+				3DBB82432DB8CAC7006BA705 /* MainFeature.swift in Sources */,
 				3DAB26112DAB755F00FDA362 /* OSWTextEditor.swift in Sources */,
 				3D2A695D2DB38EB80021720F /* SpeechRecognizer.swift in Sources */,
 				3D6D54FC2DAC8B7B0055A6E1 /* TrainingType.swift in Sources */,
@@ -538,6 +546,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3DBB823F2DB8CA8E006BA705 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.19.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3DBB82402DB8CA8E006BA705 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3DBB823F2DB8CA8E006BA705 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3DAB25C92DAA8E4A00FDA362 /* Project object */;
 }

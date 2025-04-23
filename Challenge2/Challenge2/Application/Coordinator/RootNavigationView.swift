@@ -6,23 +6,28 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct RootNavigationView: View {
     @EnvironmentObject private var coordinator: Coordinator
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {
-            MainView()
-                .navigationDestination(for: AppRoute.self) { route in
-                    switch route {
-                    case .beforeTraining(let type):
-                        BeforeTrainingView(trainingType: type)
-                    case .training(let type):
-                        TrainingView(trainingType: type)
-                    case .trainingList:
-                        TrainingListView()
-                    }
+            MainView(
+                store: Store(initialState: MainFeature.State()) {
+                    MainFeature()
                 }
+            )
+            .navigationDestination(for: AppRoute.self) { route in
+                switch route {
+                case .beforeTraining(let type):
+                    BeforeTrainingView(trainingType: type)
+                case .training(let type):
+                    TrainingView(trainingType: type)
+                case .trainingList:
+                    TrainingListView()
+                }
+            }
         }
         .tint(.osWblack)
     }
