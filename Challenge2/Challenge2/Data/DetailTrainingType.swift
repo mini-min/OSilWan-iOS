@@ -67,15 +67,15 @@ enum DetailTrainingType {
     var iconName: String {
         switch self {
         case .writeFail:
-            return ImageLiterals.icnWriteFail.rawValue
+            return "icn_writeFail"
         case .writeLearn:
-            return ImageLiterals.icnWriteLearn.rawValue
+            return "icn_writeLearn"
         case .writeEmpathy:
-            return ImageLiterals.icnWriteEmpathy.rawValue
+            return "icn_writeEmpathy"
         case .writeGoal:
-            return ImageLiterals.icnWriteGoal.rawValue
+            return "icn_writeGoal"
         case .shoutFail:
-            return ImageLiterals.icnShoutFail.rawValue
+            return "icn_shoutFail"
         }
     }
 }

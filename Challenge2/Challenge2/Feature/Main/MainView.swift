@@ -15,7 +15,7 @@ struct MainView: View {
     @EnvironmentObject private var coordinator: Coordinator
     @AppStorage("shouldAnimate") private var shouldAnimate: Bool = false
     
-    @State private var currentMessage: String = StringLiterals.MainMessage.motivation1.rawValue
+    @State private var currentMessage: String = MainCheerMessage.motivation1.rawValue
     @State private var currentFrame = 0
     @State private var isAnimating = false
     @State private var timer: Timer? = nil
@@ -172,7 +172,7 @@ private extension MainView {
     
     /// 캐릭터의 위에 있는 말풍선의 문장을 랜덤으로 바뀌도록 만드는 메서드
     func changeRandomMessage() {
-        currentMessage = StringLiterals.MainMessage.allCases
+        currentMessage = MainCheerMessage.allCases
             .filter { $0.rawValue != currentMessage }
             .randomElement()?.rawValue ?? currentMessage
     }

@@ -13,8 +13,6 @@
 		3D2A69632DB3A7650021720F /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A69622DB3A7650021720F /* AppRoute.swift */; };
 		3D2A69662DB3C50C0021720F /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A69652DB3C50C0021720F /* RootNavigationView.swift */; };
 		3D6D54FC2DAC8B7B0055A6E1 /* TrainingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D54FB2DAC8B7B0055A6E1 /* TrainingType.swift */; };
-		3D6D551A2DAC8F0D0055A6E1 /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D55192DAC8F0D0055A6E1 /* ImageLiterals.swift */; };
-		3D6D551C2DAC8F430055A6E1 /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D551B2DAC8F430055A6E1 /* StringLiterals.swift */; };
 		3D6D552D2DAC93180055A6E1 /* DetailTrainingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D552C2DAC93180055A6E1 /* DetailTrainingType.swift */; };
 		3D6D552F2DAC96A80055A6E1 /* OSWProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D552E2DAC96A80055A6E1 /* OSWProgressBar.swift */; };
 		3D6D554F2DAD34E70055A6E1 /* Text+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D554E2DAD34E70055A6E1 /* Text+.swift */; };
@@ -31,9 +29,7 @@
 		3DAB260F2DAB706F00FDA362 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DAB260E2DAB706F00FDA362 /* Colors.xcassets */; };
 		3DAB26112DAB755F00FDA362 /* OSWTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAB26102DAB755F00FDA362 /* OSWTextEditor.swift */; };
 		3DBB82142DB862B5006BA705 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3DBB82132DB862B5006BA705 /* Localizable.xcstrings */; };
-		3DFB940E2DAE28370072ECF8 /* TrainingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFB940D2DAE28370072ECF8 /* TrainingAction.swift */; };
-		3DFB94102DAE298A0072ECF8 /* TrainingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFB940F2DAE298A0072ECF8 /* TrainingState.swift */; };
-		3DFB94122DAE2A2B0072ECF8 /* TrainingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFB94112DAE2A2B0072ECF8 /* TrainingStore.swift */; };
+		3DBB821C2DB894AA006BA705 /* MainCheerMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBB821B2DB894AA006BA705 /* MainCheerMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,8 +39,6 @@
 		3D2A69622DB3A7650021720F /* AppRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRoute.swift; sourceTree = "<group>"; };
 		3D2A69652DB3C50C0021720F /* RootNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
 		3D6D54FB2DAC8B7B0055A6E1 /* TrainingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingType.swift; sourceTree = "<group>"; };
-		3D6D55192DAC8F0D0055A6E1 /* ImageLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLiterals.swift; sourceTree = "<group>"; };
-		3D6D551B2DAC8F430055A6E1 /* StringLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiterals.swift; sourceTree = "<group>"; };
 		3D6D552C2DAC93180055A6E1 /* DetailTrainingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTrainingType.swift; sourceTree = "<group>"; };
 		3D6D552E2DAC96A80055A6E1 /* OSWProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSWProgressBar.swift; sourceTree = "<group>"; };
 		3D6D554E2DAD34E70055A6E1 /* Text+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+.swift"; sourceTree = "<group>"; };
@@ -62,9 +56,7 @@
 		3DAB260E2DAB706F00FDA362 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		3DAB26102DAB755F00FDA362 /* OSWTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSWTextEditor.swift; sourceTree = "<group>"; };
 		3DBB82132DB862B5006BA705 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		3DFB940D2DAE28370072ECF8 /* TrainingAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingAction.swift; sourceTree = "<group>"; };
-		3DFB940F2DAE298A0072ECF8 /* TrainingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingState.swift; sourceTree = "<group>"; };
-		3DFB94112DAE2A2B0072ECF8 /* TrainingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingStore.swift; sourceTree = "<group>"; };
+		3DBB821B2DB894AA006BA705 /* MainCheerMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCheerMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +131,6 @@
 			children = (
 				3DAB25F82DAB69B000FDA362 /* Utils */,
 				3DAB25F72DAB699B00FDA362 /* Extensions */,
-				3DAB25F62DAB699000FDA362 /* Costs */,
 				3DAB25F42DAB68E600FDA362 /* Resources */,
 			);
 			path = Core;
@@ -151,6 +142,7 @@
 				3D6D55502DADF19D0055A6E1 /* TrainingRecord.swift */,
 				3D6D54FB2DAC8B7B0055A6E1 /* TrainingType.swift */,
 				3D6D552C2DAC93180055A6E1 /* DetailTrainingType.swift */,
+				3DBB821B2DB894AA006BA705 /* MainCheerMessage.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -174,15 +166,6 @@
 				3DAB25FA2DAB6A0700FDA362 /* TrainingList */,
 			);
 			path = Feature;
-			sourceTree = "<group>";
-		};
-		3DAB25F62DAB699000FDA362 /* Costs */ = {
-			isa = PBXGroup;
-			children = (
-				3D6D55192DAC8F0D0055A6E1 /* ImageLiterals.swift */,
-				3D6D551B2DAC8F430055A6E1 /* StringLiterals.swift */,
-			);
-			path = Costs;
 			sourceTree = "<group>";
 		};
 		3DAB25F72DAB699B00FDA362 /* Extensions */ = {
@@ -230,9 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				3DAB26022DAB6A9A00FDA362 /* TrainingView.swift */,
-				3DFB940D2DAE28370072ECF8 /* TrainingAction.swift */,
-				3DFB940F2DAE298A0072ECF8 /* TrainingState.swift */,
-				3DFB94112DAE2A2B0072ECF8 /* TrainingStore.swift */,
 			);
 			path = Training;
 			sourceTree = "<group>";
@@ -327,13 +307,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DA566802DAF38B800558130 /* Date+.swift in Sources */,
-				3DFB940E2DAE28370072ECF8 /* TrainingAction.swift in Sources */,
 				3D2A69612DB3A7090021720F /* Coordinator.swift in Sources */,
 				3D6D554F2DAD34E70055A6E1 /* Text+.swift in Sources */,
 				3DAB26052DAB6AA300FDA362 /* TrainingListView.swift in Sources */,
 				3DAB25EB2DAA8E6A00FDA362 /* Challenge2App.swift in Sources */,
-				3DFB94122DAE2A2B0072ECF8 /* TrainingStore.swift in Sources */,
-				3D6D551A2DAC8F0D0055A6E1 /* ImageLiterals.swift in Sources */,
 				3D2A695F2DB3998E0021720F /* OSWTip.swift in Sources */,
 				3DAB25FF2DAB6A8600FDA362 /* MainView.swift in Sources */,
 				3D6D55512DADF19D0055A6E1 /* TrainingRecord.swift in Sources */,
@@ -341,11 +318,10 @@
 				3D6D552D2DAC93180055A6E1 /* DetailTrainingType.swift in Sources */,
 				3DAB26012DAB6A8E00FDA362 /* BeforeTrainingView.swift in Sources */,
 				3D2A69662DB3C50C0021720F /* RootNavigationView.swift in Sources */,
-				3D6D551C2DAC8F430055A6E1 /* StringLiterals.swift in Sources */,
+				3DBB821C2DB894AA006BA705 /* MainCheerMessage.swift in Sources */,
 				3DAB26112DAB755F00FDA362 /* OSWTextEditor.swift in Sources */,
 				3D2A695D2DB38EB80021720F /* SpeechRecognizer.swift in Sources */,
 				3D6D54FC2DAC8B7B0055A6E1 /* TrainingType.swift in Sources */,
-				3DFB94102DAE298A0072ECF8 /* TrainingState.swift in Sources */,
 				3DAB26032DAB6A9A00FDA362 /* TrainingView.swift in Sources */,
 				3D6D552F2DAC96A80055A6E1 /* OSWProgressBar.swift in Sources */,
 				3DAB260D2DAB6F6300FDA362 /* OSWButton.swift in Sources */,
